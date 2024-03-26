@@ -8,7 +8,7 @@ export default function TaskCard(props) {
         <div className="task_card">
 
             <h3>{props.title}</h3>
-            <p>{props.timeStamp}</p>
+            <p>Deadline: {props.deadline ? props.deadline : "Ingen"}</p>
         </div>
 
     );
@@ -17,5 +17,5 @@ export default function TaskCard(props) {
 
 TaskCard.defaultProps = {
     title: "Kortets Titel",
-    timeStamp: "YYY-MM-DD"
+    timeStamp: "Deadline: YYY-MM-DD"
 }

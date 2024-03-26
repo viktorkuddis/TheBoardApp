@@ -81,7 +81,7 @@ header {
   flex-grow: 1;
   max-width: 100vw;
   margin: 0 auto;
-  /* background-color: #535bf2; */
+  background-color: #535bf2;
   max-height: 100%;
 
   padding: 1rem;
@@ -138,5 +138,28 @@ header {
 .task_card:hover {
   border: 1px solid hsla(0, 0%, 0%, 0.5);
   background-color: whitesmoke;
+
+}
+
+/* 
+röd
+lila
+blå
+grön
+gul
+orange
+ */
+
+html {
+  background-color: lightcoral;
+  background-color: lightsalmon;
+  background-color: palegoldenrod;
+  background-color: lightgreen;
+  background-color: turquoise;
+  background-color: lightskyblue;
+  background-color: mediumpurple;
+  background-color: plum;
+  background-color: grey;
+  background-color: lightgray;
 
 }
