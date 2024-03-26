@@ -12,15 +12,18 @@ export default function ColumnsContainer() {
         {
             columnName: "Todo",
             columnID: 1,
-            columnColor: "mediumpurple"
+            columnColor: "mediumpurple",
+            markChildsAsDone: false,
         }, {
             columnName: "Doing",
             columnID: 2,
-            columnColor: "lightskyblue"
+            columnColor: "lightskyblue",
+            markChildsAsDone: false,
         }, {
             columnName: "Done",
             columnID: 3,
-            columnColor: "lightgreen"
+            columnColor: "lightgreen",
+            markChildsAsDone: true,
         }
 
     ]);
@@ -47,7 +50,8 @@ export default function ColumnsContainer() {
                     key={column.columnID}
                     columnID={column.columnID}
                     columnName={column.columnName}
-                    columnColor={column.columnColor} />
+                    columnColor={column.columnColor}
+                    markChildsAsDone={column.markChildsAsDone} />
             ))}
 
             {/* // todo: Knapp för att skapa ny kollumn finns här. Vad ska funktionn heta? */}

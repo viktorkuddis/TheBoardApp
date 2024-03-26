@@ -141,25 +141,7 @@ header {
 
 }
 
-/* 
-röd
-lila
-blå
-grön
-gul
-orange
- */
-
-html {
-  background-color: lightcoral;
-  background-color: lightsalmon;
-  background-color: palegoldenrod;
-  background-color: lightgreen;
-  background-color: turquoise;
-  background-color: lightskyblue;
-  background-color: mediumpurple;
-  background-color: plum;
-  background-color: grey;
-  background-color: lightgray;
-
+.marked-as-done_Card {
+  text-decoration: line-through;
+  color: hsla(0, 0%, 0%, 0.5)
 }

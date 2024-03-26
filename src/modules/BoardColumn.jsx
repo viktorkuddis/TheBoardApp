@@ -52,23 +52,30 @@ export default function BoardColumn(props) {
 
         <div className="board-column" >
 
-            <h2>{props.columnName}</h2>
-            <h2>{props.columnID}</h2>
-            <h2>{props.columnColor}</h2>
+            <h2 style={{ backgroundColor: props.columnColor }}>{props.columnName}</h2>
+
+            <p>{props.columnID}</p>
+            <p>{props.columnColor}</p>
+            <p>{(props.markChildsAsDone && "Markeras som klar")}</p>
 
             <div className="board-column-cards-list_container">
 
-                {tasks.map((task) => {
-                    if (props.columnID === task.parentColumnId) {
-                        return <TaskCard
-                            title={task.title}
-                            deadline={task.deadline} />
-                    }
-                })}
+                {/* Renderar ut korten i rätt kolumn baserat på dess parentColumnID */}
 
-                {/* <TaskCard />
-                <TaskCard />
-                <TaskCard /> */}
+                {tasks.map((task) => (
+                    props.columnID === task.parentColumnId
+                    &&
+                    (
+                        <TaskCard
+                            key={task.id}
+                            title={task.title}
+                            deadline={task.deadline}
+                            markedAsDone={props.markChildsAsDone}
+                        />
+                    )
+                )
+                )}
+
             </div>
 
             <div className="column-footer">
