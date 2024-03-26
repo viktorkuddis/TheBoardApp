@@ -1,11 +1,18 @@
 import { PropTypes } from "prop-types"
 
+
+
+import TaskCard from "./TaskCard";
+
 export default function BoardColumn(props) {
     return (
 
         <div className="board-column" >
             <h2>{props.columnName}</h2>
-            Här är min board Kollumn
+
+            <TaskCard title={"en Titel HÄr"} />
+            <TaskCard />
+            <TaskCard />
         </div>
 
     );
@@ -16,6 +23,6 @@ BoardColumn.propTypes = {
 }
 
 BoardColumn.defaultProps = {
-    columnName: "Kolumn",
+    columnName: "Kolumnens Titel",
 
 }

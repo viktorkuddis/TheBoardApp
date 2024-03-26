@@ -11,7 +11,6 @@ function App() {
     <div className='app_container'>
 
       <Header />
-
       <ColumnsContainer />
 
     </div>
