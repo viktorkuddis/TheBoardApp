@@ -1,5 +1,7 @@
 import './App.css'
 
+import Header from './modules/Header'
+
 import ColumnsContainer from './modules/ColumnsContainer'
 
 function App() {
@@ -8,9 +10,7 @@ function App() {
   return (
     <div className='app_container'>
 
-      <header>
-        <h1>The Board App 😃</h1>
-      </header>
+      <Header />
 
       <ColumnsContainer />
 
