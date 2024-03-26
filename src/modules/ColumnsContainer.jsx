@@ -9,6 +9,7 @@ export default function ColumnsContainer() {
             <BoardColumn />
             <BoardColumn />
             <BoardColumn />
+
         </main>
     );
 

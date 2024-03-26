@@ -8,12 +8,23 @@ export default function BoardColumn(props) {
     return (
 
         <div className="board-column" >
+
             <h2>{props.columnName}</h2>
 
-            <TaskCard title={"en Titel HÄr"} />
-            <TaskCard />
-            <TaskCard />
-        </div>
+            <div className="board-column-cards-list_container">
+
+
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+            </div>
+
+            <div className="column-footer">
+                columnfooter
+            </div>
+
+
+        </div >
 
     );
 }
