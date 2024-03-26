@@ -110,6 +110,10 @@ header {
 
 .board-column h2 {
   background-color: lightcoral;
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 0 1rem;
+  border-radius: 999px;
 }
 
 .board-column-cards-list_container {
@@ -132,6 +136,10 @@ header {
   border-radius: 0.5rem;
   padding: 1rem;
   border: 1px solid transparent;
+
+  h3 {
+    font-size: 1.1rem;
+  }
 
 }
 
