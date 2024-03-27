@@ -28,7 +28,7 @@ function App() {
 
       <Header />
       <ColumnsContainer />
-      <Modal />
+      {/* <Modal /> */}
       {/* <Modal modalContent={modalContent} /> */}
 
 
