@@ -1,13 +1,16 @@
+//funktionalitet:
 import { PropTypes } from "prop-types"
-
-
-
-import TaskCard from "./TaskCard";
 import { useState } from "react";
 
+//moduler:
+import TaskCard from "./TaskCard";
+
+//Kolumnkomponent:
 export default function BoardColumn(props) {
 
+    //Data för varje task som ska placeras i kolumnerna:
     const [tasks, setTask] = useState(
+        //initiella task:
         [{
             title: "Vattna Blommorna",
             id: 1,
@@ -46,22 +49,22 @@ export default function BoardColumn(props) {
             timeStamplastMoved: null,
         }])
 
-
-
     return (
-
         <div className="board-column" >
 
+            {/* sätter färg och text baserat på props: */}
             <h2 style={{ backgroundColor: props.columnColor }}>{props.columnName}</h2>
 
+            {/* detta är lite testinformation som renderas: */}
             <p>{props.columnID}</p>
             <p>{props.columnColor}</p>
             <p>{(props.markChildsAsDone && "Markeras som klar")}</p>
+            {/* ---------------------------------- */}
 
+            {/* container som ska innehålla dynamisk lista med task: */}
             <div className="board-column-cards-list_container">
 
-                {/* Renderar ut korten i rätt kolumn baserat på dess parentColumnID */}
-
+                {/* Renderar ut korten(tasks) i kolumnen om dess parentColumnID stämmer med aktuella kolumnens ID */}
                 {tasks.map((task) => (
                     props.columnID === task.parentColumnId
                     &&
@@ -73,11 +76,13 @@ export default function BoardColumn(props) {
                             markedAsDone={props.markChildsAsDone}
                         />
                     )
+                    // om aktuella kolumnens props.markChildsAsDone = true så kommer korten i den kolumnen att stylas på ett annat vis.
                 )
                 )}
 
             </div>
 
+            {/* todo Skapa funktionalitet här för att skapa nytt kort. */}
             <div className="column-footer">
                 columnfooter
             </div>
