@@ -50,7 +50,20 @@ button:hover {
   background-color: hsla(0, 0%, 80%, 0.5);
 }
 
+.addTask_button {
+  background-color: transparent;
+  width: auto;
+  display: flex;
+  color: hsl(0, 0%, 30%);
+  gap: 1rem;
+}
 
+.addTask_button:hover {
+  background-color: hsla(0, 0%, 80%, 0.5);
+
+  color: hsl(0, 0%, 0%);
+
+}
 
 /* --------------------------- */
 
@@ -123,11 +136,6 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.column-footer {
-  background-color: lightgreen;
-  margin-bottom: auto;
 }
 
 .task_card {

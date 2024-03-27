@@ -4,6 +4,7 @@ import { useState } from "react";
 
 //moduler:
 import TaskCard from "./TaskCard";
+import AddTaskButton from "./AddTaskButton";
 
 //Kolumnkomponent:
 export default function BoardColumn(props) {
@@ -82,10 +83,11 @@ export default function BoardColumn(props) {
 
             </div>
 
-            {/* todo Skapa funktionalitet här för att skapa nytt kort. */}
-            <div className="column-footer">
-                columnfooter
-            </div>
+            {/* //todo Skapa funktionalitet här för att skapa nytt kort. */}
+            <AddTaskButton
+                columnID={props.columnID}
+                markChildsAsDone={props.markChildsAsDone}
+            />
 
 
         </div >
