@@ -20,7 +20,7 @@ export default function BoardColumn(props) {
             deadline: "NUUUUUU",
             timeStampCreated: "igår",
             timeStampLastEdited: "nu",
-            timeStamplastMoved: null,
+            timeStampLastMoved: null,
         }, {
             title: "Slänga soporna",
             id: 2,
@@ -29,7 +29,7 @@ export default function BoardColumn(props) {
             deadline: null,
             timeStampCreated: "förra veckan",
             timeStampLastEdited: "igår",
-            timeStamplastMoved: null,
+            timeStampLastMoved: null,
         }, {
             title: "Kolla på TV",
             id: 3,
@@ -38,7 +38,7 @@ export default function BoardColumn(props) {
             deadline: null,
             timeStampCreated: "idag",
             timeStampLastEdited: null,
-            timeStamplastMoved: null,
+            timeStampLastMoved: null,
         }, {
             title: "Bygga en ny app",
             id: 4,
@@ -47,7 +47,7 @@ export default function BoardColumn(props) {
             deadline: "igår",
             timeStampCreated: "två veckor sedan",
             timeStampLastEdited: "igår",
-            timeStamplastMoved: null,
+            timeStampLastMoved: null,
         }])
 
     return (
