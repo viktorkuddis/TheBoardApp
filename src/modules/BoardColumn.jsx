@@ -103,8 +103,6 @@ export default function BoardColumn(props) {
                     toggleAddCardComponent={toggleAddCardComponent} />}
 
 
-            {console.log(showAddTaskCard)}
-
 
 
         </div >

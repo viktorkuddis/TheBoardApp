@@ -1,21 +1,24 @@
 /* SLYLE FÖR KORTET DÄR MAN ADDERAR EN UPPGIFT: */
 
 /* nollställer stylen i hela .addTask_Card */
-.addTask_Card input {
+.addTask_Card input,
+.addTask_Card textarea {
     all: unset
 }
 
 .addTask_Card h4:focus,
 .addTask_Card p:focus,
-.addTask_Card input:focus {
+.addTask_Card input:focus,
+.addTask_Card textarea:focus {
     outline: none;
-    background-color: hsl(0, 0%, 95%);
+    background-color: hsla(0, 0%, 50%, 0.10);
 }
 
 .addTask_Card h4:hover,
 .addTask_Card p:hover,
-.addTask_Card input:hover {
-    background-color: hsl(0, 0%, 95%);
+.addTask_Card input:hover,
+.addTask_Card textarea:hover {
+    background-color: hsla(0, 0%, 50%, 0.10);
 }
 
 .addTask_Card .addTask-label {
@@ -24,5 +27,12 @@
     &:hover {
         background-color: unset;
     }
+
+}
+
+.placeholder_add-class-card {
+    color: hsl(0, 0%, 50%);
+    position: absolute;
+
 
 }
