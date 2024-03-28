@@ -182,25 +182,10 @@ header {
   color: hsla(0, 0%, 0%, 0.5)
 }
 
-/* SLYLE FÖR KORTET DÄR MAN ADDERAR EN UPPGIFT: */
 
-/* nollställer stylen i hela .addTask_Card */
-.addTask_Card input {
-  all: unset
-}
 
-.addTask_Card h4:focus,
-.addTask_Card p:focus,
-.addTask_Card input:focus {
-  outline: none;
-  background-color: hsl(0, 0%, 95%);
-}
 
-.addTask_Card .addTask-label {
-  font-size: 0.8rem;
-}
 
-.addTask_Card input {}
 
 /* -------------------------------------------- */
 

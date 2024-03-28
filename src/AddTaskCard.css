@@ -1,0 +1,28 @@
+/* SLYLE FÖR KORTET DÄR MAN ADDERAR EN UPPGIFT: */
+
+/* nollställer stylen i hela .addTask_Card */
+.addTask_Card input {
+    all: unset
+}
+
+.addTask_Card h4:focus,
+.addTask_Card p:focus,
+.addTask_Card input:focus {
+    outline: none;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.addTask_Card h4:hover,
+.addTask_Card p:hover,
+.addTask_Card input:hover {
+    background-color: hsl(0, 0%, 95%);
+}
+
+.addTask_Card .addTask-label {
+    font-size: 0.8rem;
+
+    &:hover {
+        background-color: unset;
+    }
+
+}

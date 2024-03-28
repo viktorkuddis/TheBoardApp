@@ -1,4 +1,5 @@
 import './App.css'
+import './AddTaskCard.css'
 
 //modeuler:
 import Header from './modules/Header'
