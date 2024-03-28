@@ -54,7 +54,7 @@ export default function BoardColumn(props) {
         <div className="board-column" >
 
             {/* sätter färg och text baserat på props: */}
-            <h2 style={{ backgroundColor: props.columnColor }}>{props.columnName}</h2>
+            <h2 style={{ backgroundColor: props.columnColor, color: "white" }}>{props.columnName}</h2>
 
             {/* detta är lite testinformation som renderas: */}
             <p>{props.columnID}</p>
@@ -75,6 +75,7 @@ export default function BoardColumn(props) {
                             title={task.title}
                             deadline={task.deadline}
                             markedAsDone={props.markChildsAsDone}
+                            columnColor={props.columnColor}
                         />
                     )
                     // om aktuella kolumnens props.markChildsAsDone = true så kommer korten i den kolumnen att stylas på ett annat vis.

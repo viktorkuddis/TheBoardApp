@@ -109,7 +109,7 @@ header {
 }
 
 .board-column {
-  background-color: hsla(0, 0%, 50%, 0.3);
+  background-color: hsla(0, 0%, 50%, 0.2);
   /* background-color: white; */
   border-radius: 0.5rem;
   padding: 1rem 0.5rem;
@@ -148,8 +148,11 @@ header {
 .addTask_Card {
   background-color: white;
   border-radius: 0.25rem;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   border: 1px solid transparent;
+
+  position: relative;
+
 
   h3 {
     font-size: 1.1rem;
@@ -157,10 +160,21 @@ header {
 
 }
 
-.task_card:hover {
-  border: 1px solid hsla(0, 0%, 0%, 0.5);
-  background-color: whitesmoke;
+.colored-line_task-Card {
+  background-color: #535bf2;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 0.5rem;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
 
+
+
+.task_card:hover {
+  border: 1px solid hsla(0, 0%, 0%, 0.25);
+  background-color: whitesmoke;
 }
 
 .marked-as-done_Card {
