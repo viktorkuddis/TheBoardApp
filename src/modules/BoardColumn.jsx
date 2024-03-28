@@ -5,6 +5,7 @@ import { useState } from "react";
 //moduler:
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
+import AddTaskCard from "./AddTaskCard";
 
 //Kolumnkomponent:
 export default function BoardColumn(props) {
@@ -50,6 +51,16 @@ export default function BoardColumn(props) {
             timeStampLastMoved: null,
         }])
 
+
+    // TGGLA MELLAN KNAPP FÖR ATT LÄGGA TILL TASK VS INPUTELEMENT:
+    //Variabel som avgör om kortet kort med inputelement visas eller ej:
+    const [showAddTaskCard, setShowAddTaskCard] = useState(false)
+
+    //funktion som togglar statet:
+    function toggleAddCardComponent() {
+        setShowAddTaskCard(!showAddTaskCard)
+    }
+
     return (
         <div className="board-column" >
 
@@ -84,11 +95,16 @@ export default function BoardColumn(props) {
 
             </div>
 
-            {/* //todo Skapa funktionalitet här för att skapa nytt kort. */}
-            <AddTaskButton
-                columnID={props.columnID}
-                markChildsAsDone={props.markChildsAsDone}
-            />
+            {showAddTaskCard
+                ? <AddTaskCard />
+                : <AddTaskButton
+                    columnID={props.columnID}
+                    markChildsAsDone={props.markChildsAsDone}
+                    toggleAddCardComponent={toggleAddCardComponent} />}
+
+
+            {console.log(showAddTaskCard)}
+
 
 
         </div >

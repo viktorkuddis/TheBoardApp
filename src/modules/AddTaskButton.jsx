@@ -5,13 +5,7 @@ import AddTaskCard from "./AddTaskCard";
 export default function AddTaskButton(props) {
 
 
-    //Variabel som avgör om kortet kort med inputelement visas eller ej:
-    const [showAddTaskCard, setShowAddTaskCard] = useState(false)
 
-    //funktion som togglar statet:
-    function toggleAddCardComponent() {
-        setShowAddTaskCard(!showAddTaskCard)
-    }
 
 
     //todo : 
@@ -23,12 +17,15 @@ export default function AddTaskButton(props) {
 
     return (
         <>
-            <button className="addTask_button">
+            <button className="addTask_button" onClick={props.toggleAddCardComponent}>
                 <div>🦉</div>
                 <p>Lägg till {props.markChildsAsDone && "klar"} uppgift</p>
             </button>
 
             {props.columnID}
+
+
+
 
 
 
