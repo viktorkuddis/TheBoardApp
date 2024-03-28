@@ -25,7 +25,8 @@ function App() {
 
   return (
     <div className='app_container'>
-
+      <p>Hej detta är bara en text</p>
+      <p className='TEST'><b>Vattna blommorna</b></p>
       <Header />
       <ColumnsContainer />
       {/* <Modal /> */}
