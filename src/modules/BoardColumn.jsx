@@ -1,14 +1,19 @@
 //funktionalitet:
 import { PropTypes } from "prop-types"
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 //moduler:
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
 
+import { columnsContext } from "../App";
+
+
 //Kolumnkomponent:
 export default function BoardColumn(props) {
+
+    const { columns, setColumns } = useContext(columnsContext);
 
     //Data för varje task som ska placeras i kolumnerna:
     const [tasks, setTask] = useState([])
