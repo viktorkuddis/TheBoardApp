@@ -7,16 +7,14 @@ import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
 
-import { columnsContext } from "../App";
+import { columnsContext, tasksContext } from "../App";
 
 
 //Kolumnkomponent:
 export default function BoardColumn(props) {
 
     const { columns, setColumns } = useContext(columnsContext);
-
-    //Data för varje task som ska placeras i kolumnerna:
-    const [tasks, setTask] = useState([])
+    const { tasks, setTasks } = useContext(tasksContext);
 
 
     // TGGLA MELLAN KNAPP FÖR ATT LÄGGA TILL TASK VS INPUTELEMENT:

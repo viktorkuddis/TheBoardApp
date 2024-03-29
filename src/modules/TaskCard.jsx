@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { tasksContext } from "./ColumnsContainer";
+import { tasksContext } from "../App";
 
 export default function TaskCard(props) {
 

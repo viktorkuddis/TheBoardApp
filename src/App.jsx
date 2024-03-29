@@ -12,14 +12,13 @@ import { useEffect, useState, createContext } from 'react'
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
 
-
-
+//KONTEXT FÖR TASKS
+export const tasksContext = createContext();
 
 
 
 
 function App() {
-
 
   //Värde för columnContext
   const [columns, setColumns] = useState([
@@ -42,6 +41,45 @@ function App() {
     }
   ]);
 
+  // Värde för tasks
+  const [tasks, setTasks] = useState([{
+    title: "Vattna Blommorna",
+    id: 1,
+    parentColumnId: 1,
+    description: "Det behövs innan dom dör",
+    deadline: "NUUUUUU",
+    timeStampCreated: "igår",
+    timeStampLastEdited: "nu",
+    timeStampLastMoved: null,
+  }, {
+    title: "Slänga soporna",
+    id: 2,
+    parentColumnId: 1,
+    description: "Glöm inte att porten till soprummet är tung att öppna!",
+    deadline: null,
+    timeStampCreated: "förra veckan",
+    timeStampLastEdited: "igår",
+    timeStampLastMoved: null,
+  }, {
+    title: "Kolla på TV",
+    id: 3,
+    parentColumnId: 2,
+    description: "Viktigt att få tid för sig själv också ju!",
+    deadline: null,
+    timeStampCreated: "idag",
+    timeStampLastEdited: null,
+    timeStampLastMoved: null,
+  }, {
+    title: "Bygga en ny app",
+    id: 4,
+    parentColumnId: 3,
+    description: "Bygg dendär appen som håller koll på uppgifter jag har att göra!",
+    deadline: "igår",
+    timeStampCreated: "två veckor sedan",
+    timeStampLastEdited: "igår",
+    timeStampLastMoved: null,
+  }]);
+
 
 
   return (
@@ -50,7 +88,11 @@ function App() {
       <Header />
 
       <columnsContext.Provider value={{ columns, setColumns }}>
-        <ColumnsContainer />
+        <tasksContext.Provider value={{ tasks, setTasks }}>
+
+          <ColumnsContainer />
+
+        </tasksContext.Provider>
       </columnsContext.Provider>
 
       {/* <Modal /> */}
