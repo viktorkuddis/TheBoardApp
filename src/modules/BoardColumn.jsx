@@ -11,7 +11,7 @@ import { columnsContext, tasksContext } from "../App";
 
 
 //Kolumnkomponent:
-export default function BoardColumn(props) {
+export default function BoardColumn({ column }) {
 
     const { columns, setColumns } = useContext(columnsContext);
     const { tasks, setTasks } = useContext(tasksContext);
@@ -30,12 +30,12 @@ export default function BoardColumn(props) {
         <div className="board-column" >
 
             {/* sätter färg och text baserat på props: */}
-            <h2 style={{ backgroundColor: props.columnColor, color: "white" }}>{props.columnName}</h2>
+            <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
 
             {/* detta är lite testinformation som renderas: */}
-            <p>{props.columnID}</p>
-            <p>{props.columnColor}</p>
-            <p>{(props.markChildsAsDone && "Markeras som klar")}</p>
+            <p>{column.columnID}</p>
+            <p>{column.columnColor}</p>
+            <p>{(column.markChildsAsDone && "Markeras som klar")}</p>
             {/* ---------------------------------- */}
 
             {/* container som ska innehålla dynamisk lista med task: */}
@@ -43,15 +43,15 @@ export default function BoardColumn(props) {
 
                 {/* Renderar ut korten(tasks) i kolumnen om dess parentColumnID stämmer med aktuella kolumnens ID */}
                 {tasks.map((task) => (
-                    props.columnID === task.parentColumnId
+                    column.columnID === task.parentColumnId
                     &&
                     (
                         <TaskCard
                             key={task.id}
                             title={task.title}
                             deadline={task.deadline}
-                            markedAsDone={props.markChildsAsDone}
-                            columnColor={props.columnColor}
+                            markedAsDone={column.markChildsAsDone}
+                            columnColor={column.columnColor}
                         />
                     )
                     // om aktuella kolumnens props.markChildsAsDone = true så kommer korten i den kolumnen att stylas på ett annat vis.
@@ -63,8 +63,8 @@ export default function BoardColumn(props) {
             {showAddTaskCard
                 ? <AddTaskCard />
                 : <AddTaskButton
-                    columnID={props.columnID}
-                    markChildsAsDone={props.markChildsAsDone}
+                    columnID={column.columnID}
+                    markChildsAsDone={column.markChildsAsDone}
                     toggleAddCardComponent={toggleAddCardComponent} />}
 
 

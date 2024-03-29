@@ -8,14 +8,13 @@ import ColumnsContainer from './modules/ColumnsContainer'
 import Modal from './modules/Modal'
 import { useEffect, useState, createContext } from 'react'
 
+import { getTasks } from './utils/ApiUtils'
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
 
 //KONTEXT FÖR TASKS
 export const tasksContext = createContext();
-
-
 
 
 function App() {
@@ -80,6 +79,10 @@ function App() {
     timeStampLastMoved: null,
   }]);
 
+
+  useEffect(() => {
+    setTasks(getTasks())
+  }, [])
 
 
   return (

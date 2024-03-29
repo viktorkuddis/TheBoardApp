@@ -14,7 +14,6 @@ export default function ColumnsContainer() {
 
     // hämtar kontext för kolumner
     const { columns, setColumns } = useContext(columnsContext);
-    console.log(columns);
 
     // todo Eventuellt flytta denna knappen upp i headern:
     // TODO: // TODO: // TODO: // TODO: TODO:
@@ -37,9 +36,6 @@ export default function ColumnsContainer() {
             < button onClick={handleButtonClick} > Ny Kollumn</button >
 
 
-
-
-
             <main className='columns-container_main'>
 
                 {/* Loopa genom kolumnerna för att skapa dom som separata komponenter:
@@ -48,10 +44,7 @@ export default function ColumnsContainer() {
                 {columns.map((column) => (
                     <BoardColumn
                         key={column.columnID}
-                        columnID={column.columnID}
-                        columnName={column.columnName}
-                        columnColor={column.columnColor}
-                        markChildsAsDone={column.markChildsAsDone}
+                        column={column}
                     />
                 ))}
 
