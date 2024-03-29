@@ -78,8 +78,6 @@ export default function AddTaskCard() {
                     marginTop: "0.5rem"
                 }}>Rensa deadline</button>
 
-
-
                 <div style={{ textAlign: "right", marginTop: "1rem" }}>
                     <button className="secondary-btn">Avbryt</button>
                     <button className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
