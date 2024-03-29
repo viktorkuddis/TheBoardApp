@@ -13,9 +13,8 @@ import { columnsContext, tasksContext } from "../App";
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
-    const { columns, setColumns } = useContext(columnsContext);
+    //UPPGIFTER:
     const { tasks, setTasks } = useContext(tasksContext);
-
 
     // TGGLA MELLAN KNAPP FÖR ATT LÄGGA TILL TASK VS INPUTELEMENT:
     //Variabel som avgör om kortet kort med inputelement visas eller ej:
@@ -29,14 +28,8 @@ export default function BoardColumn({ column }) {
     return (
         <div className="board-column" >
 
-            {/* sätter färg och text baserat på props: */}
+            {/* sätter färg och text i kolumnens överskrift : */}
             <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
-
-            {/* detta är lite testinformation som renderas: */}
-            <p>{column.columnID}</p>
-            <p>{column.columnColor}</p>
-            <p>{(column.markChildsAsDone && "Markeras som klar")}</p>
-            {/* ---------------------------------- */}
 
             {/* container som ska innehålla dynamisk lista med task: */}
             <div className="board-column-cards-list_container">
@@ -48,8 +41,8 @@ export default function BoardColumn({ column }) {
                     (
                         <TaskCard
                             key={task.id}
-                            title={task.title}
-                            deadline={task.deadline}
+                            task={task}
+                            //skickar med info om kolumnen så att uppgiften kan forma sig grafiskt baserat på den kolumn den ligger i:
                             markedAsDone={column.markChildsAsDone}
                             columnColor={column.columnColor}
                         />
@@ -65,18 +58,26 @@ export default function BoardColumn({ column }) {
                 : <AddTaskButton
                     columnID={column.columnID}
                     markChildsAsDone={column.markChildsAsDone}
-                    toggleAddCardComponent={toggleAddCardComponent} />}
+                    toggleAddCardComponent={toggleAddCardComponent}
+                />
+            }
 
 
-
+            {/* ---------------------------------- */}
+            {/* ---------------------------------- */}
+            {/* detta är lite testinformation som renderas: */}
+            <p>columnID: {column.columnID}</p>
+            <p>Färg: {column.columnColor}</p>
+            <p>{(column.markChildsAsDone && "Markeras som klar")}</p>
+            {/* ---------------------------------- */}
+            {/* ---------------------------------- */}
+            {/* ---------------------------------- */}
 
         </div >
 
-    );
-}
 
-BoardColumn.propTypes = {
-    columnName: PropTypes.string,
+
+    );
 }
 
 BoardColumn.defaultProps = {

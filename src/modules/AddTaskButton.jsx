@@ -22,9 +22,6 @@ export default function AddTaskButton(props) {
                 <p>Lägg till {props.markChildsAsDone && "klar"} uppgift</p>
             </button>
 
-            {props.columnID}
-
-
 
 
 
