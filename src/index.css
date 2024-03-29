@@ -42,11 +42,12 @@ body {}
 button {
   all: unset;
   width: fit-content;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   font-size: inherit;
   font-family: inherit;
+  line-height: 1;
   background-color: hsla(0, 0%, 50%, 0.5);
   cursor: pointer;
 }
@@ -54,6 +55,30 @@ button {
 /* grundstil för knapp på hover: */
 button:hover {
   background-color: hsla(0, 0%, 80%, 0.5);
+}
+
+.primary-btn {
+  background-color: hsl(211, 100%, 50%);
+  color: white;
+  ;
+
+  &:hover {
+    background-color: hsl(211, 100%, 40%);
+    color: white;
+
+  }
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 1px solid hsl(210, 7%, 46%);
+  color: hsl(210, 7%, 46%);
+
+  &:hover {
+    background-color: hsl(210, 7%, 46%);
+    color: white;
+
+  }
 }
 
 .addTask_button {
@@ -181,7 +206,6 @@ header {
   text-decoration: line-through;
   color: hsla(0, 0%, 0%, 0.5)
 }
-
 
 
 

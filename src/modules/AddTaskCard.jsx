@@ -67,10 +67,23 @@ export default function AddTaskCard() {
 
 
 
-                <p className="addTask-label" style={{ marginTop: "0.5rem" }}>Deadline:</p>
+
+
+                <p className="addTask-label" style={{ marginTop: "1rem" }}>Deadline:</p>
                 <input type="date" />
                 <input type="time" />
+                <button style={{
+                    fontSize: "0.8rem",
+                    backgroundColor: "hsl(0, 0%, 95%)",
+                    marginTop: "0.5rem"
+                }}>Rensa deadline</button>
 
+
+
+                <div style={{ textAlign: "right", marginTop: "1rem" }}>
+                    <button className="secondary-btn">Avbryt</button>
+                    <button className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
+                </div>
             </form >
         </div >
 
