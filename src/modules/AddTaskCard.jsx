@@ -6,7 +6,7 @@ import { saveTasks } from "../utils/ApiUtils";
 export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
     const { tasks, setTasks } = useContext(tasksContext);
-    console.log(tasks);
+    // console.log(tasks);
 
     //Placeholdertext:
     const placeholderForTitle = "Uppgiftsnamn";
@@ -80,6 +80,8 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
             timeStampLastEdited: new Date().toLocaleString(),
             timeStampLastMoved: new Date().toLocaleString(),
         }]))
+
+        exitAddTaskCard();
 
     }
 

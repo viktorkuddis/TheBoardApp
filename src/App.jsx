@@ -43,7 +43,7 @@ function App() {
 
   // Värde för tasks
   const [tasks, setTasks] = useState(getTasks());
-  console.log(tasks);
+  // console.log(tasks);
 
 
 
