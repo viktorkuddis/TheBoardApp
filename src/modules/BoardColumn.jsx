@@ -54,7 +54,9 @@ export default function BoardColumn({ column }) {
             </div>
 
             {showAddTaskCard
-                ? <AddTaskCard />
+                ? <AddTaskCard
+                    //Skickar funktion för boleanskt värde om addTaskCard ska visas eller ej:
+                    setShowAddTaskCard={setShowAddTaskCard} />
                 : <AddTaskButton
                     columnID={column.columnID}
                     markChildsAsDone={column.markChildsAsDone}
