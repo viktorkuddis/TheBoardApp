@@ -6,6 +6,10 @@
     all: unset
 }
 
+.addTask_Card {
+    margin-top: 0.5rem;
+}
+
 .addTask_Card h4:focus,
 .addTask_Card p:focus,
 .addTask_Card input:focus,
