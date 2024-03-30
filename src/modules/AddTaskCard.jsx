@@ -18,8 +18,8 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, steTaskDescription] = useState("");
-    const [taskDeadlineDate, setTaskDeadlineDate] = useState();
-    const [taskDeadlineTime, setTaskDeadlineTime] = useState();
+    const [taskDeadlineDate, setTaskDeadlineDate] = useState("");
+    const [taskDeadlineTime, setTaskDeadlineTime] = useState("");
 
 
     function exitAddTaskCard() {
@@ -53,6 +53,15 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         setTaskDeadlineTime(e.target.value);
         // console.log(taskDeadlineTime);
     };
+
+    function clearDeadlineInput(e) {
+        // sätter värde till "" så att inputboxarnas värde uppdateras
+        // console.log("clearfunktion kör");
+        setTaskDeadlineDate("");
+        setTaskDeadlineTime("");
+
+
+    }
 
     function addNewTask() {
         console.log("AddNewTask är klickad")
@@ -115,9 +124,9 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
             {/* deadline inputs kommer här: */}
             <p className="addTask-label" style={{ marginTop: "1rem" }}>Deadline:</p>
-            <input type="date" onChange={handleDeadlineDate} />
-            <input type="time" onChange={handleDeadlineTime} />
-            <button style={{
+            <input type="date" onChange={handleDeadlineDate} value={taskDeadlineDate} />
+            <input type="time" onChange={handleDeadlineTime} value={taskDeadlineTime} />
+            <button onClick={clearDeadlineInput} style={{
                 fontSize: "0.8rem",
                 backgroundColor: "hsl(0, 0%, 95%)",
                 marginTop: "0.5rem"
