@@ -8,7 +8,7 @@ import ColumnsContainer from './modules/ColumnsContainer'
 import Modal from './modules/Modal'
 import { useEffect, useState, createContext } from 'react'
 
-import { getTasks } from './utils/ApiUtils'
+import { getTasks, saveTasks } from './utils/ApiUtils'
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
@@ -81,7 +81,8 @@ function App() {
 
 
   useEffect(() => {
-    setTasks(getTasks())
+    setTasks(getTasks());
+    saveTasks(tasks)
   }, [])
 
   return (

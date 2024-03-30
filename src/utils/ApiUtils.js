@@ -6,7 +6,7 @@ import { dummyTasks } from './TaskUtils'
 export function getTasks() {
 
     const tasks = JSON.parse(localStorage.getItem("tasks")) || dummyTasks;
-    console.log("mina tasks from local storage: ", tasks);
+    // console.log("mina tasks from local storage: ", tasks);
 
     return tasks;
 }

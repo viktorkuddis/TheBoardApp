@@ -1,7 +1,12 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
+
+import { tasksContext } from "../App";
+import { saveTasks } from "../utils/ApiUtils";
 
 export default function AddTaskCard({ setShowAddTaskCard }) {
 
+    const { tasks, setTasks } = useContext(tasksContext);
+    console.log(tasks);
 
     //Placeholdertext:
     const placeholderForTitle = "Uppgiftsnamn";
@@ -49,6 +54,32 @@ export default function AddTaskCard({ setShowAddTaskCard }) {
         // console.log(taskDeadlineTime);
     };
 
+    function addNewTask() {
+        console.log("AddNewTask är klickad")
+
+        let id = new Date;
+        id = "task" + id.getTime()
+        console.log("id:", id);
+
+        setTasks((t) => ([...t, {
+            title: taskTitle,
+            id: id,
+            parentColumnId: 1,
+            description: taskDescription,
+            deadline: "",
+            timeStampCreated: new Date().toLocaleString(),
+            timeStampLastEdited: new Date().toLocaleString(),
+            timeStampLastMoved: new Date().toLocaleString(),
+        }]))
+
+    }
+
+
+    // Spara tasks när variabeln tasks uppdateras:
+    useEffect(() => {
+        saveTasks(tasks);
+    }, [tasks])
+
     return (<>
 
         <div className="addTask_Card">
@@ -68,8 +99,7 @@ export default function AddTaskCard({ setShowAddTaskCard }) {
                 </h4>
 
             </div>
-
-            {/* Container för beskrivning: */}
+            {/* C🖊️ontainer för beskrivning: */}
             <div>
                 {/* visar placeholder om det inte finns värde i fältet för Beskrivning: */}
                 {showDescriptionPlaceholdder &&
@@ -83,7 +113,7 @@ export default function AddTaskCard({ setShowAddTaskCard }) {
 
             </div>
 
-
+            {/* deadline inputs kommer här: */}
             <p className="addTask-label" style={{ marginTop: "1rem" }}>Deadline:</p>
             <input type="date" onChange={handleDeadlineDate} />
             <input type="time" onChange={handleDeadlineTime} />
@@ -93,9 +123,13 @@ export default function AddTaskCard({ setShowAddTaskCard }) {
                 marginTop: "0.5rem"
             }}>Rensa deadline</button>
 
+
+            {/* nedre knappar här: */}
             <div style={{ textAlign: "right", marginTop: "1rem" }}>
-                <button onClick={exitAddTaskCard} className="secondary-btn">Avbryt</button>
-                <button className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
+
+                <button onClick={exitAddTaskCard} className="secondary-btn" style={{ marginLeft: "0.5rem" }}>Avbryt</button>
+                <button style={{ marginLeft: "0.5rem" }} >✏️</button>
+                <button onClick={addNewTask} className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
             </div>
 
         </div >
