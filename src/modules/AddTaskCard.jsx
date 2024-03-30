@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react"
 import { tasksContext } from "../App";
 import { saveTasks } from "../utils/ApiUtils";
 
-export default function AddTaskCard({ setShowAddTaskCard }) {
+export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
     const { tasks, setTasks } = useContext(tasksContext);
     console.log(tasks);
@@ -64,7 +64,7 @@ export default function AddTaskCard({ setShowAddTaskCard }) {
         setTasks((t) => ([...t, {
             title: taskTitle,
             id: id,
-            parentColumnId: 1,
+            parentColumnId: columnID,
             description: taskDescription,
             deadline: "",
             timeStampCreated: new Date().toLocaleString(),

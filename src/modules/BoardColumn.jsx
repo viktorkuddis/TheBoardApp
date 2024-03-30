@@ -56,7 +56,10 @@ export default function BoardColumn({ column }) {
             {showAddTaskCard
                 ? <AddTaskCard
                     //Skickar funktion för boleanskt värde om addTaskCard ska visas eller ej:
-                    setShowAddTaskCard={setShowAddTaskCard} />
+                    setShowAddTaskCard={setShowAddTaskCard}
+                    // Skickar med kolumnensId för att identifiera vilken kolumn tasket ska placers i:
+                    columnID={column.columnID}
+                />
                 : <AddTaskButton
                     columnID={column.columnID}
                     markChildsAsDone={column.markChildsAsDone}
