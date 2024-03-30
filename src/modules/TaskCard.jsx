@@ -12,6 +12,9 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
             </div>
 
             <h3>{task.title}</h3>
+
+            {task.description && <p className="description_task-card">{task.description}</p>}
+
             <p>Deadline: {task.deadline ? task.deadline : "Ingen"}</p>
         </div>
 

@@ -9,7 +9,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
     // console.log(tasks);
 
     //Placeholdertext:
-    const placeholderForTitle = "Uppgiftsnamn";
+    const placeholderForTitle = "Uppgiftstitel";
     const placeholderForDescription = "Beskrivning";
 
     //booleans för om placeholder visas eller ej:
@@ -104,28 +104,28 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                     </h4>}
 
                 <h4 contentEditable={true}
-                    style={{ position: "relative" }}
+                    style={{ position: "relative", zIndex: "5", padding: "0.2rem 0rem" }}
                     onInput={handleTitle} >
 
                 </h4>
 
             </div>
             {/* C🖊️ontainer för beskrivning: */}
-            <div>
+            <div style={{ marginTop: "0.5rem" }}>
                 {/* visar placeholder om det inte finns värde i fältet för Beskrivning: */}
                 {showDescriptionPlaceholdder &&
                     <p className="placeholder_add-class-card">{placeholderForDescription}
                     </p>}
 
                 <p contentEditable={true}
-                    style={{ position: "relative", zIndex: "5" }}
+                    style={{ position: "relative", zIndex: "5", padding: "0.2rem 0rem" }}
                     onInput={handleDescription} >
                 </p>
 
             </div>
 
             {/* deadline inputs kommer här: */}
-            <p className="addTask-label" style={{ marginTop: "1rem" }}>Deadline:</p>
+            <p className="addTask-label" style={{ marginTop: "0.5rem" }}>Deadline:</p>
             <input type="date" onChange={handleDeadlineDate} value={taskDeadlineDate} />
             <input type="time" onChange={handleDeadlineTime} value={taskDeadlineTime} />
             <button onClick={clearDeadlineInput} style={{
@@ -142,6 +142,14 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 <button style={{ marginLeft: "0.5rem" }} >✏️</button>
                 <button onClick={addNewTask} className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
             </div>
+
+
+
+
+
+
+
+
 
         </div >
 

@@ -1,11 +1,14 @@
 import './App.css'
 import './AddTaskCard.css'
+import './Animations.css'
 
 //modeuler:
 import Header from './modules/Header'
 import ColumnsContainer from './modules/ColumnsContainer'
 
 import Modal from './modules/Modal'
+import Alert from './modules/Alert'
+
 import { useEffect, useState, createContext } from 'react'
 
 
@@ -65,6 +68,13 @@ function App() {
 
       {/* <Modal /> */}
       {/* <Modal modalContent={modalContent} /> */}
+      <Alert alertContent="⚠️ Ge uppgiften en titel!" />
+
+
+
+
+
+
 
     </div>
   )

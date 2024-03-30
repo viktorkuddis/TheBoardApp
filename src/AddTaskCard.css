@@ -8,6 +8,7 @@
 
 .addTask_Card {
     margin-top: 0.5rem;
+    line-height: 1.2;
 }
 
 .addTask_Card h4:focus,
