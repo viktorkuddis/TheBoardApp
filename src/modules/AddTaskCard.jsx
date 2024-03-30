@@ -3,6 +3,8 @@ import { useState, useContext, useEffect } from "react"
 import { tasksContext } from "../App";
 import { saveTasks } from "../utils/ApiUtils";
 
+import Alert from "./Alert";
+
 export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
     const { tasks, setTasks } = useContext(tasksContext);
@@ -11,6 +13,9 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
     //Placeholdertext:
     const placeholderForTitle = "Uppgiftstitel";
     const placeholderForDescription = "Beskrivning";
+
+    //togggla state för alertbox:
+    const [showTitleMissingAlert, setShowTitleMissingAlert] = useState(false)
 
     //booleans för om placeholder visas eller ej:
     const [showTitlePlaceholder, setShowTitlePlaceholder] = useState(true);
@@ -59,30 +64,37 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         // console.log("clearfunktion kör");
         setTaskDeadlineDate("");
         setTaskDeadlineTime("");
-
-
     }
 
     function addNewTask() {
         console.log("AddNewTask är klickad")
 
-        let id = new Date;
-        id = "task" + id.getTime()
-        console.log("id:", id);
 
-        setTasks((t) => ([...t, {
-            title: taskTitle,
-            id: id,
-            parentColumnId: columnID,
-            description: taskDescription,
-            deadline: "",
-            timeStampCreated: new Date().toLocaleString(),
-            timeStampLastEdited: new Date().toLocaleString(),
-            timeStampLastMoved: new Date().toLocaleString(),
-        }]))
+        if (taskTitle.trim() !== "") {
 
-        exitAddTaskCard();
+            let id = new Date;
+            id = "task" + id.getTime()
+            console.log("id:", id);
 
+            setTasks((t) => ([...t, {
+                title: taskTitle,
+                id: id,
+                parentColumnId: columnID,
+                description: taskDescription,
+                deadline: "",
+                timeStampCreated: new Date().toLocaleString(),
+                timeStampLastEdited: new Date().toLocaleString(),
+                timeStampLastMoved: new Date().toLocaleString(),
+            }]));
+            exitAddTaskCard();
+
+        } else {
+            setShowTitleMissingAlert(true);
+            setTimeout(() => {
+                setShowTitleMissingAlert(false);
+            }, 3000);
+
+        }
     }
 
 
@@ -142,6 +154,9 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 <button style={{ marginLeft: "0.5rem" }} >✏️</button>
                 <button onClick={addNewTask} className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
             </div>
+
+            {/* //Villkorsstyrd rendering för Alert om namn saknas vid försök att lägga till uppgift:*/}
+            {showTitleMissingAlert && <Alert alertContent="⚠️ Ge uppgiften en titel!" />}
 
 
 

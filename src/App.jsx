@@ -68,7 +68,7 @@ function App() {
 
       {/* <Modal /> */}
       {/* <Modal modalContent={modalContent} /> */}
-      <Alert alertContent="⚠️ Ge uppgiften en titel!" />
+
 
 
 
