@@ -109,10 +109,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         }
     }
 
-    // Spara tasks när variabeln tasks uppdateras:
-    useEffect(() => {
-        saveTasks(tasks);
-    }, [tasks])
+
 
     return (<>
 

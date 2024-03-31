@@ -48,7 +48,10 @@ function App() {
   const [tasks, setTasks] = useState(getTasks());
   // console.log(tasks);
 
-
+  // Spara tasks när variabeln tasks uppdateras:
+  useEffect(() => {
+    saveTasks(tasks);
+  }, [tasks])
 
 
   return (
