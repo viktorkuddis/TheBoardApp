@@ -406,3 +406,16 @@ header {
 .advancedEditModal .description {
   flex-grow: 1;
 }
+
+.advancedEditModal h1:focus,
+.advancedEditModal p:focus,
+.advancedEditModal input:focus {
+  outline: none;
+  background-color: hsla(0, 0%, 50%, 0.10);
+}
+
+.advancedEditModal h1:hover,
+.advancedEditModal p:hover,
+.advancedEditModal input:hover {
+  background-color: hsla(0, 0%, 50%, 0.10);
+}
