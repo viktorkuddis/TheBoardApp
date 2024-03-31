@@ -37,7 +37,9 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         //omvärdet är en tom string så visas placeholder annars döljs den:.
         (e.target.textContent === "" ? setShowTitlePlaceholder(true) : setShowTitlePlaceholder(false))
 
-        // console.log("taskTitle:", taskTitle);
+        console.log("taskTitle:", taskTitle);
+
+
     };
 
     function handleDescription(e) {
@@ -66,11 +68,14 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         setTaskDeadlineTime("");
     }
 
+    //lägger till uppgiften om det finns en titel skriven
     function addNewTask() {
         console.log("AddNewTask är klickad")
+        const taskTitleInput_Value = document.querySelector(".task-title_input").textContent
+        console.log("VÄRDET SOMFANNS: ", taskTitleInput_Value);
+        // console.log(taskTitleInput.textContent)
 
-
-        if (taskTitle.trim() !== "") {
+        if (taskTitleInput_Value.trim() !== "") {
 
             let id = new Date;
             id = "task" + id.getTime()
@@ -97,6 +102,12 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         }
     }
 
+    //Lyssnar efter EEnter-klick och försöker spara om shift inte hålls ner!
+    function handleEnterKey(e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+            addNewTask()
+        }
+    }
 
     // Spara tasks när variabeln tasks uppdateras:
     useEffect(() => {
@@ -115,9 +126,9 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                     >{placeholderForTitle}
                     </h4>}
 
-                <h4 contentEditable={true}
+                <h4 contentEditable={true} className="task-title_input enableEnterForAddTask"
                     style={{ position: "relative", zIndex: "5", padding: "0.2rem 0rem" }}
-                    onInput={handleTitle} >
+                    onInput={handleTitle} onKeyDown={handleEnterKey}>
 
                 </h4>
 
@@ -131,15 +142,15 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
                 <p contentEditable={true}
                     style={{ position: "relative", zIndex: "5", padding: "0.2rem 0rem" }}
-                    onInput={handleDescription} >
+                    onInput={handleDescription} onKeyDown={handleEnterKey}>
                 </p>
 
             </div>
 
             {/* deadline inputs kommer här: */}
             <p className="addTask-label" style={{ marginTop: "0.5rem" }}>Deadline:</p>
-            <input type="date" onChange={handleDeadlineDate} value={taskDeadlineDate} />
-            <input type="time" onChange={handleDeadlineTime} value={taskDeadlineTime} />
+            <input type="date" onChange={handleDeadlineDate} onKeyDown={handleEnterKey} value={taskDeadlineDate} />
+            <input type="time" onChange={handleDeadlineTime} onKeyDown={handleEnterKey} value={taskDeadlineTime} />
             <button onClick={clearDeadlineInput} style={{
                 fontSize: "0.8rem",
                 backgroundColor: "hsl(0, 0%, 95%)",
