@@ -6,12 +6,18 @@ import { useState, useContext } from "react";
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
+import AdvancedEditModal from "./AdvancedEditModal";
 
 import { columnsContext, tasksContext } from "../App";
 
 
+
+
+
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
+
+
 
     //UPPGIFTER:
     const { tasks, setTasks } = useContext(tasksContext);
@@ -25,7 +31,7 @@ export default function BoardColumn({ column }) {
         setShowAddTaskCard(!showAddTaskCard)
     }
 
-    return (
+    return (<>
         <div className="board-column" >
 
             {/* sätter färg och text i kolumnens överskrift : */}
@@ -39,6 +45,7 @@ export default function BoardColumn({ column }) {
                     column.columnID === task.parentColumnId
                     &&
                     (
+
                         <TaskCard
                             key={task.id}
                             task={task}
@@ -46,6 +53,7 @@ export default function BoardColumn({ column }) {
                             markedAsDone={column.markChildsAsDone}
                             columnColor={column.columnColor}
                         />
+
                     )
                     // om aktuella kolumnens props.markChildsAsDone = true så kommer korten i den kolumnen att stylas på ett annat vis.
                 )
@@ -80,6 +88,7 @@ export default function BoardColumn({ column }) {
 
         </div >
 
+    </>
 
 
     );
