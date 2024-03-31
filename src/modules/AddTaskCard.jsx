@@ -86,7 +86,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 id: id,
                 parentColumnId: columnID,
                 description: taskDescription,
-                deadline: "",
+                deadline: taskDeadlineDate + " " + taskDeadlineTime,
                 timeStampCreated: new Date().toLocaleString(),
                 timeStampLastEdited: new Date().toLocaleString(),
                 timeStampLastMoved: new Date().toLocaleString(),

@@ -29,8 +29,8 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
                 <h3>{task.title}</h3>
 
                 {task.description && <p className="description_task-card">{task.description}</p>}
-
-                {task.deadline &&
+                {/* om deadline har ett definerat värde och är av typen string och inte är en tom striing så skrovs de ut på sidan: */}
+                {task.deadline && typeof task.deadline === 'string' && task.deadline.trim() !== "" &&
                     <p style={{ fontSize: "0.8rem", color: "grey" }}>
                         Deadline: {task.deadline}</p>}
 

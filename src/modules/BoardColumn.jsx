@@ -6,7 +6,6 @@ import { useState, useContext } from "react";
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
-import AdvancedEditModal from "./AdvancedEditModal";
 
 import { columnsContext, tasksContext } from "../App";
 
