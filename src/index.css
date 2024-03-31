@@ -199,6 +199,20 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  cursor: pointer;
+
+
+
+}
+
+.task_card:hover::before {
+  content: "Redigera";
+  font-size: 0.8rem;
+  line-height: 1;
+  color: grey;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.25rem
 }
 
 .description_task-card {
