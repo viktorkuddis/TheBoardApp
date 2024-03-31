@@ -14,6 +14,7 @@ export default function AdvancedEditModal() {
 
             <h1>Vattna Blommorna</h1>
             <div className="body">
+
                 <div className="meta-data_section">
                     <div className="time-stams_container" >
                         <p>Deadline: ---</p>
