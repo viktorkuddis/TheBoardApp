@@ -15,7 +15,9 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
             {task.description && <p className="description_task-card">{task.description}</p>}
 
-            <p>Deadline: {task.deadline ? task.deadline : "Ingen"}</p>
+            {task.deadline &&
+                <p style={{ fontSize: "0.8rem", color: "grey" }}>
+                    Deadline: {task.deadline}</p>}
         </div>
 
     );
