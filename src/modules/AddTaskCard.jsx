@@ -130,7 +130,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 </h4>
 
             </div>
-            {/* C🖊️ontainer för beskrivning: */}
+            {/* Container för beskrivning: */}
             <div style={{ marginTop: "0.5rem" }}>
                 {/* visar placeholder om det inte finns värde i fältet för Beskrivning: */}
                 {showDescriptionPlaceholdder &&

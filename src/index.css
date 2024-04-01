@@ -174,7 +174,7 @@ header {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .board-column-cards-list_container {
@@ -328,6 +328,7 @@ header {
   border-radius: 1rem;
   border: 1px solid white;
   width: fit-content;
+  z-index: 9999;
 
   position: fixed;
   top: 3rem;
@@ -418,4 +419,8 @@ header {
 .advancedEditModal p:hover,
 .advancedEditModal input:hover {
   background-color: hsla(0, 0%, 50%, 0.10);
+}
+
+.advancedEditModal input {
+  all: unset
 }

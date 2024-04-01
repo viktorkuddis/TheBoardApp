@@ -21,7 +21,7 @@ export default function AdvancedEditModal({ taskID }) {
     const [title, setTitle] = useState(currentTask.title)
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
     const [description, setDescription] = useState(currentTask.description)
-    const [deadline, setDeadline] = useState(currentTask.deadline)
+    //Deadline....
     const [timeStampLastEdited, setDimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
     const [timeStampLastMoved, setDimeStampLastMoved] = useState(currentTask.settimeStampLastMoved)
 
@@ -32,13 +32,13 @@ export default function AdvancedEditModal({ taskID }) {
         setTasks((prevTask) => prevTask.map((task) => {
             if (task.id === taskID) {
                 return {
-                    title: "",
+                    title: title,
                     id: taskID,
-                    parentColumnId: 1,
-                    description: "Det behövs innan dom dör",
+                    parentColumnId: parentColumnId,
+                    description: description,
                     deadline: "NUUUUUU",
                     timeStampCreated: "igår",
-                    timeStampLastEdited: new Date().toLocaleString,
+                    timeStampLastEdited: timeStampLastEdited,
                     timeStampLastMoved: null,
                 }
             }
@@ -62,21 +62,37 @@ export default function AdvancedEditModal({ taskID }) {
                 <div className="meta-data_section">
                     <div className="time-stams_container" >
 
-                        <p>Deadline: {deadline}</p>
+                        <p style={{ fontSize: "0.8rem" }}>Deadline:</p>
 
-                        <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
 
-                        <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
+
+                        {/* deadline inputs kommer här: */}
+
+                        <input type="date" />
+                        <input type="time" />
+                        <br />
+                        <button style={{
+                            fontSize: "0.8rem",
+                            backgroundColor: "hsl(0, 0%, 95%)",
+                            marginTop: "0.5rem"
+                        }}>Rensa deadline</button>
+
 
                     </div>
 
                     <div className="handle-columns_container" >här ska de vara en drop down</div>
                 </div>
 
-                <p contentEditable="true" className="description" suppressContentEditableWarning >{description}</p>
+                <p contentEditable="true" className="description" suppressContentEditableWarning >{description || "Beskrivning ..."}</p>
 
+                <div className="time-stams_container" >
+                    <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
+                    <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
+                </div>
 
                 <button className="danger-btn">Radera</button>
+
+
             </div>
         </article>
     </>;
