@@ -167,6 +167,7 @@ header {
 .board-column h2 {
   background-color: grey;
   font-size: 1.2rem;
+  flex-shrink: 0;
   width: fit-content;
   padding: 0 1rem;
   border-radius: 999px;
