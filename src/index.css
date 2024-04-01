@@ -10,8 +10,14 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
+
+  /* rem-omställning baserxat på en bas om 16px/rem*/
+  /* motsvarar 12px:*/
+  /* font-size: 75%; */
+  /* motsvarar 14px*/
+  font-size: 87.5%;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,24 +37,385 @@ a:hover {
 
 body {}
 
-
+/* ------------KNAPPAR--------------- */
+/* grundstil för knapp: */
 button {
-  border-radius: 8px;
+  all: unset;
+  width: fit-content;
+  border-radius: 0.25rem;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  font-size: inherit;
   font-family: inherit;
-  background-color: #1a1a1a;
+  line-height: 1;
+  background-color: hsla(0, 0%, 50%, 0.5);
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
+/* grundstil för knapp på hover: */
 button:hover {
-  border-color: #646cff;
+  background-color: hsla(0, 0%, 80%, 0.5);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.primary-btn {
+  background-color: hsl(211, 100%, 50%);
+  color: white;
+  ;
+
+  &:hover {
+    background-color: hsl(211, 100%, 40%);
+    color: white;
+
+  }
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 1px solid hsl(210, 7%, 46%);
+  color: hsl(210, 7%, 46%);
+
+  &:hover {
+    background-color: hsl(210, 7%, 46%);
+    color: white;
+
+  }
+}
+
+.danger-btn {
+  /* background-color: hsl(211, 100%, 50%); */
+  background-color: hsl(354, 70%, 54%);
+  color: white;
+  ;
+
+  &:hover {
+    background-color: hsl(354, 70%, 44%);
+    color: white;
+
+  }
+}
+
+.addTask_button {
+  background-color: transparent;
+  width: auto;
+  display: flex;
+  color: hsl(0, 0%, 30%);
+  gap: 1rem;
+}
+
+.addTask_button:hover {
+  background-color: hsla(0, 0%, 80%, 0.5);
+
+  color: hsl(0, 0%, 0%);
+
+}
+
+/* --------------------------- */
+
+
+.app_container {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+}
+
+header {
+  background-color: hsla(0, 0%, 50%, 0.2);
+  padding: 1rem;
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+
+
+
+.columns-container_main {
+  flex-grow: 1;
+  max-width: 100vw;
+  margin: 0 auto;
+  /* background-color: #535bf2; */
+  max-height: 100%;
+
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.board-column {
+  background-color: hsla(0, 0%, 50%, 0.2);
+  /* background-color: white; */
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+
+  width: 20rem;
+  flex-shrink: 0;
+
+  /* flexar ut element i kolumnen vertikalt */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+
+
+.board-column h2 {
+  background-color: grey;
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 0 1rem;
+  border-radius: 999px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  /* overflow: hidden; */
+}
+
+.board-column-cards-list_container {
+  /* background-color: lightblue; */
+  overflow: auto;
+
+  /* Flexar listan med korten */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+/* gemensam style för Card och addTaskCard: */
+.task_card,
+.addTask_Card {
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  border: 1px solid transparent;
+
+  position: relative;
+}
+
+
+/* uppgiftstkort style: */
+
+.task_card h3 {
+  font-size: 1.1rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.task_card p {
+  color: hsl(0, 0%, 30%);
+}
+
+.task_card {
+  line-height: 1.2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+
+
+
+}
+
+.task_card:hover::before {
+  content: "Redigera";
+  font-size: 0.8rem;
+  line-height: 1;
+  color: grey;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.25rem
+}
+
+.description_task-card {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.colored-line_task-Card {
+  background-color: #535bf2;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 0.5rem;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+
+
+.task_card:hover {
+  border: 1px solid hsla(0, 0%, 0%, 0.25);
+  background-color: whitesmoke;
+}
+
+.marked-as-done_Card {
+  text-decoration: line-through;
+  color: hsla(0, 0%, 0%, 0.5)
+}
+
+
+
+
+
+/* -------------------------------------------- */
+
+
+/* ---------MODAL------*/
+
+.modal-background-plate {
+  background-color: hsla(0, 0%, 0%, 0.2);
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 9999;
+
+
+
+  display: grid;
+  place-items: center;
+}
+
+.modal-content-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  height: 50%;
+  width: clamp(320px, 70%, 900px);
+  height: clamp(300px, 70%, 600px);
+  /* overflow: auto; */
+  box-shadow: 0px 1rem 2rem 0 rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------- */
+
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 1.15rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  border: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ALERT */
+.alert_content-container {
+  background-color: hsla(0, 0%, 0%, 0.80);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: 1px solid white;
+  width: fit-content;
+
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translate(-50%);
+
+
+}
+
+/* ADVANCED EDIT MODAL */
+
+.advancedEditModal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* background-color: pink; */
+}
+
+.advancedEditModal .head {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #535bf2; */
+  gap: 1rem;
+}
+
+.advancedEditModal h2 {
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: fit-content;
+}
+
+.advancedEditModal .cross {
+  position: relative;
+
+  right: -1rem;
+  top: -1rem;
+  height: fit-content;
+}
+
+.advancedEditModal .timestamps {
+  color: grey;
+  line-height: 1;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.advancedEditModal .meta-data_section {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+.advancedEditModal .handle-columns_container {
+  margin: 0 auto
+}
+
+.advancedEditModal .body {
+  /* background-color: red; */
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* background-color: #535bf2; */
+  flex-grow: 1;
+}
+
+.advancedEditModal h1 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.advancedEditModal .description {
+  flex-grow: 1;
+}
+
+.advancedEditModal h1:focus,
+.advancedEditModal p:focus,
+.advancedEditModal input:focus {
+  outline: none;
+  background-color: hsla(0, 0%, 50%, 0.10);
+}
+
+.advancedEditModal h1:hover,
+.advancedEditModal p:hover,
+.advancedEditModal input:hover {
+  background-color: hsla(0, 0%, 50%, 0.10);
 }
