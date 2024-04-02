@@ -406,7 +406,8 @@ header {
 }
 
 .advancedEditModal textarea {
-  all: unset;
+  border: none;
+  font: inherit;
 }
 
 .advancedEditModal .description {
