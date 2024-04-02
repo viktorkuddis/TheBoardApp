@@ -1,9 +1,8 @@
 /* SLYLE FÖR KORTET DÄR MAN ADDERAR EN UPPGIFT: */
 
 /* nollställer stylen i hela .addTask_Card */
-.addTask_Card input,
-.addTask_Card textarea {
-    all: unset
+.addTask_Card input {
+    /* all: unset */
 }
 
 .addTask_Card {
