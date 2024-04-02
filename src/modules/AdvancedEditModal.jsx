@@ -45,7 +45,7 @@ export default function AdvancedEditModal({ taskID }) {
 
     function handleDescription(e) {
 
-        setDescription(e.target.textContent);
+        setDescription(e.target.value);
     }
 
     function handleTimeStampLastEdited() { }
@@ -134,13 +134,14 @@ export default function AdvancedEditModal({ taskID }) {
                 >
                     {/* {description} */}
                 </textarea>
+                <div>
+                    <div className="time-stams_container" style={{ marginBottom: "0.5rem" }} >
+                        <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
+                        <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
+                    </div>
 
-                <div className="time-stams_container" >
-                    <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
-                    <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
+                    <button className="danger-btn">Radera</button>
                 </div>
-
-                <button className="danger-btn">Radera</button>
 
 
             </div>
