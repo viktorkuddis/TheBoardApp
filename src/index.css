@@ -423,5 +423,13 @@ header {
 }
 
 .advancedEditModal input {
-  all: unset
+  font-size: inherit;
+  padding: 0.25rem;
+  border: 1px solid hsl(0, 0%, 90%);
+  border-radius: 0.25rem;
+  background-color: none;
+}
+
+.advancedEditModal input[type="time"] {
+  margin: 0 0.5em
 }

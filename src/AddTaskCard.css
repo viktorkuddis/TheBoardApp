@@ -2,7 +2,15 @@
 
 /* nollställer stylen i hela .addTask_Card */
 .addTask_Card input {
-    /* all: unset */
+    font-size: inherit;
+    padding: 0.25rem;
+    border: 1px solid hsl(0, 0%, 90%);
+    border-radius: 0.25rem;
+    background-color: none;
+}
+
+.addTask_Card input[type="time"] {
+    margin: 0 0.5em
 }
 
 .addTask_Card {
