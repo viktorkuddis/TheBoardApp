@@ -405,20 +405,26 @@ header {
   margin-bottom: 0.5rem;
 }
 
+.advancedEditModal textarea {
+  all: unset;
+}
+
 .advancedEditModal .description {
   flex-grow: 1;
 }
 
 .advancedEditModal h1:focus,
 .advancedEditModal p:focus,
-.advancedEditModal input:focus {
+.advancedEditModal input:focus,
+.advancedEditModal textarea:focus {
   outline: none;
   background-color: hsla(0, 0%, 50%, 0.10);
 }
 
 .advancedEditModal h1:hover,
 .advancedEditModal p:hover,
-.advancedEditModal input:hover {
+.advancedEditModal input:hover,
+.advancedEditModal textarea:hover {
   background-color: hsla(0, 0%, 50%, 0.10);
 }
 

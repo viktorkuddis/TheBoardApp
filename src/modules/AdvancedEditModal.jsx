@@ -20,10 +20,24 @@ export default function AdvancedEditModal({ taskID }) {
 
     const [title, setTitle] = useState(currentTask.title)
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
-    const [description, setDescription] = useState(currentTask.description)
-    //Deadline....
-    const [timeStampLastEdited, setDimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
-    const [timeStampLastMoved, setDimeStampLastMoved] = useState(currentTask.settimeStampLastMoved)
+    const [description, setDescription] = useState(currentTask.description || "Beskrivning ...")
+
+
+    const [deadlineDate, setDeadlineDate] = useState(currentTask.deadline.split(" ")[0] || "")
+    const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline.split(" ")[1] || "")
+    const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
+    const [timeStampLastMoved, setTimeStampLastMoved] = useState(currentTask.settimeStampLastMoved);
+
+    function handleTitle(e) { setTitle(e.target.textContent) }
+    function handleParentColumnID() { }
+    function handleDescription(e) { setDescription(e.target.value) }
+    function handleTimeStampLastEdited() { }
+    function handleTimeStampLastMoved() { }
+    function handleDeadlineDate(e) { setDeadlineDate(e.target.value) }
+    function handleDeadlineTime(e) { setDeadlineTime(e.target.value) }
+    function handleClearDeadlilne() { setDeadlineDate(""), setDeadlineTime("") }
+
+
 
     function uppdateTask() {
         //uppdatera objektet:
@@ -56,7 +70,12 @@ export default function AdvancedEditModal({ taskID }) {
 
 
 
-            <h1 contentEditable="true" suppressContentEditableWarning>{title}</h1>
+            <h1 contentEditable="true"
+                suppressContentEditableWarning
+                onBlur={handleTitle}>
+                {title}
+            </h1>
+
             <div className="body">
 
                 <div className="meta-data_section">
@@ -68,14 +87,15 @@ export default function AdvancedEditModal({ taskID }) {
 
                         {/* deadline inputs kommer här: */}
 
-                        <input type="date" />
-                        <input type="time" />
+                        <input type="date" value={deadlineDate} onChange={handleDeadlineDate} />
+                        <input type="time" value={deadlineTime} onChange={handleDeadlineTime} />
                         <br />
                         <button style={{
                             fontSize: "0.8rem",
                             backgroundColor: "hsl(0, 0%, 95%)",
                             marginTop: "0.5rem"
-                        }}>Rensa deadline</button>
+                        }}
+                            onClick={handleClearDeadlilne}>Rensa deadline</button>
 
 
                     </div>
@@ -83,7 +103,20 @@ export default function AdvancedEditModal({ taskID }) {
                     <div className="handle-columns_container" >här ska de vara en drop down</div>
                 </div>
 
-                <p contentEditable="true" className="description" suppressContentEditableWarning >{description || "Beskrivning ..."}</p>
+
+                <textarea value={description}
+                    className="description"
+                    suppressContentEditableWarning
+                    onChange={handleDescription}>
+
+                </textarea>
+
+                {/* <p contentEditable="true"
+                    className="description"
+                    suppressContentEditableWarning
+                    onBlur={handleDescription}>
+                    {description}
+                </p> */}
 
                 <div className="time-stams_container" >
                     <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
