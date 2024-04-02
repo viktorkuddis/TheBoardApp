@@ -6,7 +6,17 @@ import Modal from "./Modal";
 
 
 
+
 export default function AdvancedEditModal({ taskID }) {
+
+
+
+
+    const html = "<strong>hello world</strong>";
+    // console.log(sanitizeHtml(html));
+    // console.log(sanitizeHtml("<img src=x onerror=alert('img') />"));
+    // console.log(sanitizeHtml("console.log('hello world')"));
+    // console.log(sanitizeHtml("<script>alert('hello world')</script>"));
 
     console.log(taskID)
 
@@ -18,7 +28,7 @@ export default function AdvancedEditModal({ taskID }) {
     const currentTask = tasks.find((task) => { return task.id === taskID })
     console.log(currentTask)
 
-    const [title, setTitle] = useState(currentTask.title)
+    const [title, setTitle] = useState(currentTask.title || "OJE")
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
     const [description, setDescription] = useState(currentTask.description || "Beskrivning ...")
 
@@ -30,13 +40,21 @@ export default function AdvancedEditModal({ taskID }) {
 
     function handleTitle(e) { setTitle(e.target.textContent) }
     function handleParentColumnID() { }
-    function handleDescription(e) { setDescription(e.target.value) }
+
+
+
+    function handleDescription(e) {
+
+        setDescription(e.target.textContent);
+    }
+
     function handleTimeStampLastEdited() { }
     function handleTimeStampLastMoved() { }
     function handleDeadlineDate(e) { setDeadlineDate(e.target.value) }
     function handleDeadlineTime(e) { setDeadlineTime(e.target.value) }
     function handleClearDeadlilne() { setDeadlineDate(""), setDeadlineTime("") }
 
+    //funktion för att bestämma storleken på textarean dynamisk:
 
 
     function uppdateTask() {
@@ -70,13 +88,16 @@ export default function AdvancedEditModal({ taskID }) {
 
 
 
-            <h1 contentEditable="true"
-                suppressContentEditableWarning
-                onBlur={handleTitle}>
-                {title}
-            </h1>
+
+
 
             <div className="body">
+
+                <h1 contentEditable="true"
+                    suppressContentEditableWarning
+                    onBlur={handleTitle}>
+                    {title}
+                </h1>
 
                 <div className="meta-data_section">
                     <div className="time-stams_container" >
@@ -104,19 +125,15 @@ export default function AdvancedEditModal({ taskID }) {
                 </div>
 
 
-                <textarea value={description}
+
+                <textarea contentEditable="true"
                     className="description"
                     suppressContentEditableWarning
-                    onChange={handleDescription}>
-
+                    onChange={handleDescription}
+                    value={description}
+                >
+                    {/* {description} */}
                 </textarea>
-
-                {/* <p contentEditable="true"
-                    className="description"
-                    suppressContentEditableWarning
-                    onBlur={handleDescription}>
-                    {description}
-                </p> */}
 
                 <div className="time-stams_container" >
                     <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
