@@ -51,7 +51,10 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     function handleTimeStampLastEdited() { setTimeStampLastEdited(new Date().toLocaleString()) }
 
-    function handleParentColumnID() { }
+    function handleChangeParentColumnID(e) {
+        console.log(e.target.value)
+        setParentColumnId(e.target.value)
+    }
 
     function handleTitle(e) {
         //Varnar för att titel måste finnas
@@ -204,7 +207,7 @@ Detta går inte att ångra!`)
                         <label htmlFor="Flytta Uppgift:" style={{ fontSize: "0.8rem" }}>Flytta uppgift:</label>
                         <br />
 
-                        <select name="Flytta Uppgift" defaultValue={currentTask.parentColumnId}>
+                        <select name="Flytta Uppgift" defaultValue={currentTask.parentColumnId} onChange={handleChangeParentColumnID}>
                             {/* generera option för varje kolumn som finns:*/}
                             {columns.map((column) => {
                                 return <option key={column.columnID} value={column.columnID}>{column.columnName}</option>
