@@ -445,7 +445,7 @@ header {
 .advancedEditModal h1:focus,
 /* .advancedEditModal p:focus, */
 .advancedEditModal input:focus,
-.advancedEditModal select:focus,
+select:focus,
 .advancedEditModal textarea:focus {
   outline: none;
   background-color: hsla(0, 0%, 50%, 0.10);
@@ -454,13 +454,13 @@ header {
 .advancedEditModal h1:hover,
 /* .advancedEditModal p:hover, */
 .advancedEditModal input:hover,
-.advancedEditModal select:hover,
+select:hover,
 .advancedEditModal textarea:hover {
   background-color: hsla(0, 0%, 50%, 0.10);
 }
 
 .advancedEditModal input,
-.advancedEditModal select {
+select {
   /* font-size: inherit; */
   padding: 0.25rem;
   border: 1px solid hsl(0, 0%, 90%);
