@@ -161,14 +161,6 @@ Detta går inte att ångra!`)
         setTasks(newArray);
     }
 
-
-
-
-
-
-
-
-
     const content = <>
 
         <article className="advancedEditModal">
@@ -212,10 +204,12 @@ Detta går inte att ångra!`)
                         <label htmlFor="Flytta Uppgift:" style={{ fontSize: "0.8rem" }}>Flytta uppgift:</label>
                         <br />
 
-                        <select name="Flytta Uppgift">
-                            <option value="hej ">HEJ</option>
-                            <option value="och ">OCH</option>
-                            <option value="hå">HÅ</option>
+                        <select name="Flytta Uppgift" defaultValue={currentTask.parentColumnId}>
+                            {/* generera option för varje kolumn som finns:*/}
+                            {columns.map((column) => {
+                                return <option key={column.columnID} value={column.columnID}>{column.columnName}</option>
+                            })}
+
                         </select>
                     </div>
                 </div>
