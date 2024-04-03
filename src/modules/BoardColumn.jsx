@@ -78,10 +78,10 @@ export default function BoardColumn({ column }) {
 
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
-            {/* detta är lite testinformation som renderas: */}
-            <p>columnID: {column.columnID}</p>
+            {/* detta är lite testinformation som renderas på sidan: */}
+            {/* <p>columnID: {column.columnID}</p>
             <p>Färg: {column.columnColor}</p>
-            <p>{(column.markChildsAsDone && "Markeras som klar")}</p>
+            <p>{(column.markChildsAsDone && "Markeras som klar")}</p> */}
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
