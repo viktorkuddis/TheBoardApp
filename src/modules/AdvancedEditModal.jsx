@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { tasksContext, columnsContext } from "../App";
 import Modal from "./Modal";
+import Alert from "./Alert";
 
 
 
@@ -9,6 +10,7 @@ import Modal from "./Modal";
 
 export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
+    //taskIT är det aktuella taskets ID:
     console.log(taskID)
 
     //alla uppgifter: 
@@ -23,9 +25,13 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const currentTask = tasks.find((task) => { return task.id === taskID })
     // console.log(currentTask)
 
-    const [title, setTitle] = useState(currentTask.title || "OJE")
+    //bolean för att visa alertbox:
+    const [showAlert, setShowAlert] = useState(false);
+
+
+    const [title, setTitle] = useState(currentTask.title)
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
-    const [description, setDescription] = useState(currentTask.description || "Beskrivning ...")
+    const [description, setDescription] = useState(currentTask.description || "")
     const [deadlineDate, setDeadlineDate] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[0] : "")
     const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[1] : "")
     const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
@@ -37,6 +43,15 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     function handleParentColumnID() { }
 
     function handleTitle(e) {
+        //Varnar för att titel måste finnas
+        if (!e.target.textContent) {
+            setShowAlert(true)
+            setTimeout(() => {
+                setShowAlert(false)
+            }, 3000);
+        }
+        //...sätter alltid titel...
+        // varning kommer även i nästa steg...
         setTitle(e.target.textContent)
         handleTimeStampLastEdited()
     }
@@ -67,57 +82,33 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     //Sparar och tar bort modalen:
     function handleExitAndSaveModal() {
-        console.log("exit")
-        console.log(taskID);
-        uppdateTask()
-        setadvancedEditisOpend(false);
+
+        if (title !== "") {
+            console.log(title)
+            console.log("exit")
+            console.log(taskID);
+            uppdateTask()
+            setadvancedEditisOpend(false);
+        } else {
+            setShowAlert(true)
+            setTimeout(() => {
+                setShowAlert(false)
+            }, 3000);
+        }
+
+
+
     }
 
-
-
-
-    //Denna Variabel uppdateras ALLTID då en variabel i denna komponent uppdateras.
-    const updatedTask = {
-        title: title,
-        id: taskID,
-        parentColumnId: parentColumnId,
-        description: description,
-        deadline: deadlineDate + " " + deadlineTime,
-        timeStampCreated: currentTask.timeStampCreated,
-        timeStampLastEdited: new Date().toLocaleString(),
-        timeStampLastMoved: null,
-    };
-    console.log(updatedTask)
+    //TODO:
+    function handleDeleteTask(taskID) { }
 
 
     function uppdateTask() {
 
-
-        // ???????????????????????????????
-        // ???????????????????????????????
-        // ???????????????????????????????
-
-        /* 
-        ! ? VARFÖR UPPDATERAS INTE MIN TASK I LISTAN?
-        ? När jag loggar ut ändringar av varje variabel i realtod syns ändringarna.
-        ? När jag uppdaterar arrayen finns inte ändringarna kvar. Något med det asynkrona?
-        ? Jag har kontakt med min kontext. Går att bevisa genm setTask([updatedTask])
-        */
-
-        // FRÅN REACTS DOKUMENTATION https://react.dev/learn/updating-arrays-in-state
-        // function handleIncrementClick(index) {
-        //     const nextCounters = counters.map((c, i) => {
-        //         if (i === index) {
-        //    Increment the clicked counter
-        //             return c + 1;
-        //         } else {
-        //    The rest haven't changed
-        //             return c;
-        //         }
-        //     });
-        //     setCounters(nextCounters);
-        // }
-
+        // skapar en ny array att byta ut den gamla mot...
+        // kopierar alla uppgifter från den gamla förutom om det är det alktuella IDt.. 
+        //...Då byts den ut mot ny data.
         const newArray = tasks.map((task) => {
             if (task.id === taskID) {
                 return {
@@ -135,14 +126,14 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
             }
         }
         )
+        // console.log(newArray)
 
-        console.log(newArray)
-
+        // sätter ny array som mina tasks.
         setTasks(newArray);
     }
 
 
-    // todo GÖR DETTA TILL USE EXXEKT SOM SÄTTS EFTER ATT KOMPONENTEN RENDERAS: och uppsateras VARJE GÅNG CURRENT TASK UPPDATERAS:
+    // todo GÖR DETTA TILL USE EFFEKT SOM SÄTTS EFTER ATT KOMPONENTEN RENDERAS: och uppsateras VARJE GÅNG CURRENT TASK UPPDATERAS:
     const [currentColumn, setCurrentColumn] = useState(columns.find((column) => {
         return column.id === currentTask.parentColumnId;
 
@@ -179,11 +170,11 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
                         {/* deadline inputs kommer här: */}
 
                         <input type="date" value={deadlineDate} onChange={handleDeadlineDate} />
-                        <input type="time" value={deadlineTime} onChange={handleDeadlineTime} />
+                        <input type="time" style={{ marginBottom: "0.5rem", }}
+                            value={deadlineTime} onChange={handleDeadlineTime} />
                         <button style={{
                             fontSize: "0.8rem",
                             backgroundColor: "hsl(0, 0%, 95%)",
-                            marginTop: "0.5rem"
                         }}
                             onClick={handleClearDeadline}>Rensa deadline</button>
 
@@ -205,9 +196,9 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
 
 
-                <textarea contentEditable="true"
+                <textarea
                     className="description"
-                    suppressContentEditableWarning
+                    placeholder="Beskrivning...."
                     onChange={handleDescription}
                     value={description}
                 >
@@ -221,7 +212,7 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
                     <div className="footer-buttons_container">
 
                         <div className="danger-zone">
-                            <button className="danger-btn">Radera</button>
+                            <button className="danger-btn" onClick={handleDeleteTask(taskID)}>Radera</button>
                         </div>
 
                         <div>
@@ -239,6 +230,8 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
 
             </div>
+            {showAlert && <Alert alertContent={"⚠️ Ge uppgiften en titel"} />}
+
         </article>
     </>;
 
