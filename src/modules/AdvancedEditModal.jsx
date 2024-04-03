@@ -15,8 +15,9 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const { tasks, setTasks } = useContext(tasksContext)
     // console.log(tasks)
 
+    //data om de kollumner som finns:
     const { columns, setColumns } = useContext(columnsContext)
-    console.log(columns)
+    // console.log(columns)
 
     //Aktuell uppgift:
     const currentTask = tasks.find((task) => { return task.id === taskID })
@@ -25,8 +26,8 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const [title, setTitle] = useState(currentTask.title || "OJE")
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
     const [description, setDescription] = useState(currentTask.description || "Beskrivning ...")
-    const [deadlineDate, setDeadlineDate] = useState(currentTask.deadline.split(" ")[0] || "")
-    const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline.split(" ")[1] || "")
+    const [deadlineDate, setDeadlineDate] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[0] : "")
+    const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[1] : "")
     const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
     const [timeStampLastMoved, setTimeStampLastMoved] = useState(currentTask.settimeStampLastMoved);
 
@@ -67,37 +68,12 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     //Sparar och tar bort modalen:
     function handleExitAndSaveModal() {
         console.log("exit")
+        console.log(taskID);
         uppdateTask()
         setadvancedEditisOpend(false);
     }
 
-    // Eventlyssnare för att klicka ner modalen:
-    useEffect(() => {
-        //Hämtar bakgrundsplattan
-        const backgroundplate = document.querySelector(".modal-background-plate")
 
-        // skapar eventlyssnare som kallar på efterkommande funktioner
-        backgroundplate.addEventListener("click", handleBackgroundClick)
-        addEventListener("keydown", handleKeyClickModal)
-
-        function handleBackgroundClick(e) {
-            if (e.target.className === "modal-background-plate") {
-                handleExitAndSaveModal();
-            }
-        }
-
-        function handleKeyClickModal(e) {
-            if (e.key === "Escape") {
-                handleExitAndSaveModal();
-            }
-        }
-
-        //och vi städar....
-        return () => {
-            backgroundplate.removeEventListener("click", handleBackgroundClick);
-            document.removeEventListener("keydown", handleKeyClickModal);
-        };
-    }, [])
 
 
     //Denna Variabel uppdateras ALLTID då en variabel i denna komponent uppdateras.
@@ -162,8 +138,18 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
         console.log(newArray)
 
-        setTasks([updatedTask]);
+        setTasks(newArray);
     }
+
+
+    // todo GÖR DETTA TILL USE EXXEKT SOM SÄTTS EFTER ATT KOMPONENTEN RENDERAS: och uppsateras VARJE GÅNG CURRENT TASK UPPDATERAS:
+    const [currentColumn, setCurrentColumn] = useState(columns.find((column) => {
+        return column.id === currentTask.parentColumnId;
+
+    }))
+    // console.log(currentColumn)
+
+
 
 
 
@@ -225,7 +211,6 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
                     onChange={handleDescription}
                     value={description}
                 >
-                    {/* {description} */}
                 </textarea>
                 <div>
                     <div className="time-stams_container" style={{ marginBottom: "0.5rem" }} >
@@ -233,7 +218,23 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
                         <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
                     </div>
 
-                    <button className="danger-btn">Radera</button>
+                    <div className="footer-buttons_container">
+
+                        <div className="danger-zone">
+                            <button className="danger-btn">Radera</button>
+                        </div>
+
+                        <div>
+                            <button className="secondary-btn"
+                                onClick={() => { setadvancedEditisOpend(false) }}>Avbryt</button>
+                            <button className="primary-btn"
+                                onClick={handleExitAndSaveModal}
+                                style={{ marginLeft: "1rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
+                                <b>OK</b>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
 
 
