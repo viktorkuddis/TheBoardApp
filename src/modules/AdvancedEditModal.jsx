@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { tasksContext } from "../App";
+import { tasksContext, columnsContext } from "../App";
 import Modal from "./Modal";
 
 
@@ -14,6 +14,9 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     //alla uppgifter: 
     const { tasks, setTasks } = useContext(tasksContext)
     // console.log(tasks)
+
+    const { columns, setColumns } = useContext(columnsContext)
+    console.log(columns)
 
     //Aktuell uppgift:
     const currentTask = tasks.find((task) => { return task.id === taskID })
@@ -191,7 +194,6 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
                         <input type="date" value={deadlineDate} onChange={handleDeadlineDate} />
                         <input type="time" value={deadlineTime} onChange={handleDeadlineTime} />
-                        <br />
                         <button style={{
                             fontSize: "0.8rem",
                             backgroundColor: "hsl(0, 0%, 95%)",
@@ -202,7 +204,17 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
                     </div>
 
-                    <div className="handle-columns_container" >här ska de vara en drop down</div>
+                    <div className="handle-columns_container" >
+
+                        <label htmlFor="Flytta Uppgift:" style={{ fontSize: "0.8rem" }}>Flytta uppgift:</label>
+                        <br />
+
+                        <select name="Flytta Uppgift">
+                            <option value="hej ">HEJ</option>
+                            <option value="och ">OCH</option>
+                            <option value="hå">HÅ</option>
+                        </select>
+                    </div>
                 </div>
 
 
