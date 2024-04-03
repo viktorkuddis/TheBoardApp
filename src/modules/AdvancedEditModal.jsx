@@ -165,8 +165,6 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
                         <p style={{ fontSize: "0.8rem" }}>Deadline:</p>
 
-
-
                         {/* deadline inputs kommer här: */}
 
                         <input type="date" value={deadlineDate} onChange={handleDeadlineDate} />
