@@ -27,7 +27,7 @@ function App() {
   const [columns, setColumns] = useState([
     //initiell data som utgör standardkolumner:
     {
-      columnName: "Todo",
+      columnName: "Todos",
       columnID: 1,
       columnColor: "mediumpurple",
       markChildsAsDone: false,

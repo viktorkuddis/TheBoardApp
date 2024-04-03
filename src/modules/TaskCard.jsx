@@ -39,17 +39,24 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
                 {task.description && <p className="description_task-card">{task.description}</p>}
                 {/* om deadline har ett definerat värde och är av typen string och inte är en tom striing så skrovs de ut på sidan: */}
-                {task.deadline && typeof task.deadline === 'string' && task.deadline.trim() !== "" &&
-                    <p style={{ fontSize: "0.8rem", color: "grey" }}>
-                        Deadline: {task.deadline}</p>}
-                <select name="Flytta Uppgift" defaultValue="Flytta">
-                    {/* generera option för varje kolumn som finns:*/}
-                    <option value="Flytta" disabled>Flytta...</option>
-                    {columns.map((column) => {
-                        return <option key={column.columnID} value={column.columnID}>{column.columnName}</option>
-                    })}
 
-                </select>
+                <div className="task-card-footer_container" >
+                    {task.deadline && typeof task.deadline === 'string' && task.deadline.trim() !== "" &&
+                        <p style={{ fontSize: "0.8rem", color: "grey" }}>
+                            Deadline: <br /> {task.deadline}</p>}
+
+
+
+                    <select name="Flytta Uppgift" className="moveTask_dropwdown" defaultValue="Flytta">
+                        {/* generera option för varje kolumn som finns:*/}
+                        <option value="Flytta" disabled>Flytta...</option>
+                        {columns.map((column) => {
+                            return <option key={column.columnID} value={column.columnID}>{column.columnName}</option>
+                        })}
+
+                    </select>
+                </div>
+
 
 
 
