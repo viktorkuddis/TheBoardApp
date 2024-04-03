@@ -40,7 +40,7 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
 
             </div>
-            {advancedEditisOpend && <AdvancedEditModal taskID={task.id} />}
+            {advancedEditisOpend && <AdvancedEditModal taskID={task.id} setadvancedEditisOpend={setadvancedEditisOpend} />}
 
         </>
 

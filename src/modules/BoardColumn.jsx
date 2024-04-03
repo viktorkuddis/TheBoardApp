@@ -41,7 +41,8 @@ export default function BoardColumn({ column }) {
 
                 {/* Renderar ut korten(tasks) i kolumnen om dess parentColumnID stämmer med aktuella kolumnens ID */}
                 {tasks.map((task) => (
-                    column.columnID === task.parentColumnId
+
+                    column.columnID == task.parentColumnId
                     &&
                     (
 

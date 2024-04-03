@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { tasksContext } from "../App";
 import Modal from "./Modal";
 
@@ -7,16 +7,7 @@ import Modal from "./Modal";
 
 
 
-export default function AdvancedEditModal({ taskID }) {
-
-
-
-
-    const html = "<strong>hello world</strong>";
-    // console.log(sanitizeHtml(html));
-    // console.log(sanitizeHtml("<img src=x onerror=alert('img') />"));
-    // console.log(sanitizeHtml("console.log('hello world')"));
-    // console.log(sanitizeHtml("<script>alert('hello world')</script>"));
+export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     console.log(taskID)
 
@@ -26,70 +17,160 @@ export default function AdvancedEditModal({ taskID }) {
 
     //Aktuell uppgift:
     const currentTask = tasks.find((task) => { return task.id === taskID })
-    console.log(currentTask)
+    // console.log(currentTask)
 
     const [title, setTitle] = useState(currentTask.title || "OJE")
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
     const [description, setDescription] = useState(currentTask.description || "Beskrivning ...")
-
-
     const [deadlineDate, setDeadlineDate] = useState(currentTask.deadline.split(" ")[0] || "")
     const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline.split(" ")[1] || "")
     const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
     const [timeStampLastMoved, setTimeStampLastMoved] = useState(currentTask.settimeStampLastMoved);
 
-    function handleTitle(e) { setTitle(e.target.textContent) }
+
+    function handleTimeStampLastEdited() { setTimeStampLastEdited(new Date().toLocaleString()) }
+
     function handleParentColumnID() { }
 
-
-
-    function handleDescription(e) {
-
-        setDescription(e.target.value);
+    function handleTitle(e) {
+        setTitle(e.target.textContent)
+        handleTimeStampLastEdited()
     }
 
-    function handleTimeStampLastEdited() { }
-    function handleTimeStampLastMoved() { }
-    function handleDeadlineDate(e) { setDeadlineDate(e.target.value) }
-    function handleDeadlineTime(e) { setDeadlineTime(e.target.value) }
-    function handleClearDeadlilne() { setDeadlineDate(""), setDeadlineTime("") }
+    function handleDescription(e) {
+        setDescription(e.target.value);
+        handleTimeStampLastEdited()
+        console.log(description)
+    }
+
+    function handleDeadlineDate(e) {
+        setDeadlineDate(e.target.value)
+        handleTimeStampLastEdited()
+    }
+    function handleDeadlineTime(e) {
+        setDeadlineTime(e.target.value)
+        handleTimeStampLastEdited()
+    }
+    function handleClearDeadline() {
+        setDeadlineDate("")
+        setDeadlineTime("")
+        handleTimeStampLastEdited()
+    }
 
     //funktion för att bestämma storleken på textarean dynamisk:
 
 
-    function uppdateTask() {
-        //uppdatera objektet:
 
-        // för varje task loopar vi igenom och kopierar över det som det såg ut i sitt tidigare stadie. FÖRUTOM om det matchar aktuellt id. Då ersätter vi med komplett ny version av objektet.
-        setTasks((prevTask) => prevTask.map((task) => {
+    //Sparar och tar bort modalen:
+    function handleExitAndSaveModal() {
+        console.log("exit")
+        uppdateTask()
+        setadvancedEditisOpend(false);
+    }
+
+    // Eventlyssnare för att klicka ner modalen:
+    useEffect(() => {
+        //Hämtar bakgrundsplattan
+        const backgroundplate = document.querySelector(".modal-background-plate")
+
+        // skapar eventlyssnare som kallar på efterkommande funktioner
+        backgroundplate.addEventListener("click", handleBackgroundClick)
+        addEventListener("keydown", handleKeyClickModal)
+
+        function handleBackgroundClick(e) {
+            if (e.target.className === "modal-background-plate") {
+                handleExitAndSaveModal();
+            }
+        }
+
+        function handleKeyClickModal(e) {
+            if (e.key === "Escape") {
+                handleExitAndSaveModal();
+            }
+        }
+
+        //och vi städar....
+        return () => {
+            backgroundplate.removeEventListener("click", handleBackgroundClick);
+            document.removeEventListener("keydown", handleKeyClickModal);
+        };
+    }, [])
+
+
+    //Denna Variabel uppdateras ALLTID då en variabel i denna komponent uppdateras.
+    const updatedTask = {
+        title: title,
+        id: taskID,
+        parentColumnId: parentColumnId,
+        description: description,
+        deadline: deadlineDate + " " + deadlineTime,
+        timeStampCreated: currentTask.timeStampCreated,
+        timeStampLastEdited: new Date().toLocaleString(),
+        timeStampLastMoved: null,
+    };
+    console.log(updatedTask)
+
+
+    function uppdateTask() {
+
+
+        // ???????????????????????????????
+        // ???????????????????????????????
+        // ???????????????????????????????
+
+        /* 
+        ! ? VARFÖR UPPDATERAS INTE MIN TASK I LISTAN?
+        ? När jag loggar ut ändringar av varje variabel i realtod syns ändringarna.
+        ? När jag uppdaterar arrayen finns inte ändringarna kvar. Något med det asynkrona?
+        ? Jag har kontakt med min kontext. Går att bevisa genm setTask([updatedTask])
+        */
+
+        // FRÅN REACTS DOKUMENTATION https://react.dev/learn/updating-arrays-in-state
+        // function handleIncrementClick(index) {
+        //     const nextCounters = counters.map((c, i) => {
+        //         if (i === index) {
+        //    Increment the clicked counter
+        //             return c + 1;
+        //         } else {
+        //    The rest haven't changed
+        //             return c;
+        //         }
+        //     });
+        //     setCounters(nextCounters);
+        // }
+
+        const newArray = tasks.map((task) => {
             if (task.id === taskID) {
                 return {
                     title: title,
                     id: taskID,
                     parentColumnId: parentColumnId,
                     description: description,
-                    deadline: "NUUUUUU",
-                    timeStampCreated: "igår",
-                    timeStampLastEdited: timeStampLastEdited,
-                    timeStampLastMoved: null,
+                    deadline: deadlineDate + " " + deadlineTime,
+                    timeStampCreated: currentTask.timeStampCreated,
+                    timeStampLastEdited: new Date().toLocaleString(),
+                    timeStampLastMoved: null
                 }
+            } else {
+                return task;
             }
-        }))
+        }
+        )
 
+        console.log(newArray)
+
+        setTasks([updatedTask]);
     }
+
+
 
     const content = <>
 
         <article className="advancedEditModal">
             <div className="head">
                 <h2>{parentColumnId}  </h2>
-                <button className="cross">X</button>
+                <button className="cross" title="Stäng och spara" onClick={handleExitAndSaveModal}>X</button>
             </div>
-
-
-
-
-
 
             <div className="body">
 
@@ -116,7 +197,7 @@ export default function AdvancedEditModal({ taskID }) {
                             backgroundColor: "hsl(0, 0%, 95%)",
                             marginTop: "0.5rem"
                         }}
-                            onClick={handleClearDeadlilne}>Rensa deadline</button>
+                            onClick={handleClearDeadline}>Rensa deadline</button>
 
 
                     </div>
@@ -151,7 +232,7 @@ export default function AdvancedEditModal({ taskID }) {
 
     return (
 
-        <Modal modalContent={content} />
+        <Modal modalContent={content} setadvancedEditisOpend={setadvancedEditisOpend} />
         // <Modal />
     );
 };
