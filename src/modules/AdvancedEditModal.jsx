@@ -28,6 +28,17 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     //bolean för att visa alertbox:
     const [showAlert, setShowAlert] = useState(false);
 
+    //variabel som håller den aktuella kolumn som tasken just nu befinner sig i.
+    const [currentColumn, setCurrentColumn] = useState();
+    console.log("kolumnen för tasken:", currentColumn)
+    // console.log("namnet på kolumnen:", currentColumn.columnName)
+
+    // Uppdaterar CURRENT COLUMN varje gång tasket uppdateras:
+    useEffect(() => {
+        const currentColumnObject = columns.find((col) => currentTask.parentColumnId === col.columnID)
+        setCurrentColumn(currentColumnObject)
+    }, [currentTask])
+
 
     const [title, setTitle] = useState(currentTask.title)
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
@@ -151,12 +162,8 @@ Detta går inte att ångra!`)
     }
 
 
-    // todo GÖR DETTA TILL USE EFFEKT SOM SÄTTS EFTER ATT KOMPONENTEN RENDERAS: och uppsateras VARJE GÅNG CURRENT TASK UPPDATERAS:
-    const [currentColumn, setCurrentColumn] = useState(columns.find((column) => {
-        return column.id === currentTask.parentColumnId;
 
-    }))
-    // console.log(currentColumn)
+
 
 
 
@@ -166,7 +173,10 @@ Detta går inte att ångra!`)
 
         <article className="advancedEditModal">
             <div className="head">
-                <h2>{parentColumnId}  </h2>
+                <h2 style={{
+                    backgroundColor: `${currentColumn?.columnColor}`,
+                    color: "White"
+                }} > {currentColumn?.columnName} </h2>
                 <button className="cross" title="Stäng och spara" onClick={handleExitAndSaveModal}>X</button>
             </div>
 

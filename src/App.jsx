@@ -37,7 +37,7 @@ function App() {
       columnColor: "lightskyblue",
       markChildsAsDone: false,
     }, {
-      columnName: "Done jhksh sdjhf djfh djfhd j hdjfh jdhf jhf djhf dj",
+      columnName: "Done",
       columnID: 3,
       columnColor: "lightgreen",
       markChildsAsDone: true,
