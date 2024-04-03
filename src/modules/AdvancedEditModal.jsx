@@ -100,8 +100,26 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     }
 
-    //TODO:
-    function handleDeleteTask(taskID) { }
+    //Tar bort uppgiften ut Tasks:
+    // Skickar ett confirmationsmeddelande. raderar om ja.
+    function handleDeleteTask() {
+
+        const confirmation = confirm(`⚠️ RADERA UPPGIFT ⚠️
+Du håller på att radera uppgift "${currentTask.title}".
+
+Är du säker?
+Detta går inte att ångra!`)
+
+        console.log(confirmation)
+        if (confirmation === true) {
+            const newArray = tasks.filter((task) => task.id !== taskID)
+
+            // console.log(taskID);
+            // console.log(newArray)
+
+            setTasks(newArray);
+        }
+    }
 
 
     function uppdateTask() {
@@ -210,7 +228,7 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
                     <div className="footer-buttons_container">
 
                         <div className="danger-zone">
-                            <button className="danger-btn" onClick={handleDeleteTask(taskID)}>Radera</button>
+                            <button className="danger-btn" onClick={handleDeleteTask}> Radera</button>
                         </div>
 
                         <div>

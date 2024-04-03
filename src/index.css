@@ -418,7 +418,7 @@ header {
 
 .advancedEditModal h1 {
   line-height: 1.2;
-  max-height: 50%;
+  max-height: 40%;
   flex-shrink: 0;
   overflow: auto;
 
@@ -434,7 +434,7 @@ header {
   border-radius: 0.25rem;
   padding: 0.5rem;
 
-  min-height: clamp(3rem, 50%, 600px);
+  min-height: clamp(3rem, 40%, 600px);
   /* min-height: 3rem; */
 }
 
