@@ -5,9 +5,6 @@ import Alert from "./Alert";
 
 
 
-
-
-
 export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     //taskIT är det aktuella taskets ID:
@@ -22,22 +19,15 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     // console.log(columns)
 
     //Aktuell uppgift:
-    const currentTask = tasks.find((task) => { return task.id === taskID })
+    const currentTask = tasks.find((task) => { return (task.id === taskID) })
     // console.log(currentTask)
 
     //bolean för att visa alertbox:
     const [showAlert, setShowAlert] = useState(false);
 
-    //variabel som håller den aktuella kolumn som tasken just nu befinner sig i.
-    const [currentColumn, setCurrentColumn] = useState();
-    console.log("kolumnen för tasken:", currentColumn)
-    // console.log("namnet på kolumnen:", currentColumn.columnName)
 
-    // Uppdaterar CURRENT COLUMN varje gång tasket uppdateras:
-    useEffect(() => {
-        const currentColumnObject = columns.find((col) => currentTask.parentColumnId === col.columnID)
-        setCurrentColumn(currentColumnObject)
-    }, [currentTask])
+
+
 
 
     const [title, setTitle] = useState(currentTask.title)
@@ -47,9 +37,23 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[1] : "")
     const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
     const [timeStampLastMoved, setTimeStampLastMoved] = useState(currentTask.settimeStampLastMoved);
+    //variabel som håller den aktuella kolumn som tasken just nu befinner sig i.
+    const [currentColumn, setCurrentColumn] = useState({});
+    console.log("kolumnen för tasken:currentColumn: ", currentColumn)
+    // console.log("namnet på kolumnen:", currentColumn.columnName)
 
 
-    function handleTimeStampLastEdited() { setTimeStampLastEdited(new Date().toLocaleString()) }
+    // Uppdaterar CURRENT COLUMN OBJEKTET varje gång parentColumnID uppdateras(flyttas via knapp)(för att kynna färja och namnge labels i realtid):
+    useEffect(() => {
+        // (ja, det ska bara vara två likamedtecken här:)
+        const currentColumnObject = columns.find((column) => parentColumnId == column.columnID)
+        setCurrentColumn(currentColumnObject)
+    }, [parentColumnId])
+
+
+    function handleTimeStampLastEdited() {
+        setTimeStampLastEdited(new Date().toLocaleString())
+    }
 
     function handleChangeParentColumnID(e) {
         console.log(e.target.value)
@@ -164,14 +168,17 @@ Detta går inte att ångra!`)
         setTasks(newArray);
     }
 
+
+
+
     const content = <>
 
         <article className="advancedEditModal">
             <div className="head">
                 <h2 style={{
-                    backgroundColor: `${currentColumn?.columnColor}`,
+                    backgroundColor: currentColumn.columnColor,
                     color: "White"
-                }} > {currentColumn?.columnName} </h2>
+                }} > {currentColumn.columnName} </h2>
                 <button className="cross" title="Stäng och spara" onClick={handleExitAndSaveModal}>X</button>
             </div>
 
