@@ -25,7 +25,7 @@ function App() {
 
   //Värde för columnContext
   const [columns, setColumns] = useState(getColumns());
-  console.log(columns)
+  // console.log(columns)
 
   // Värde för tasks
   const [tasks, setTasks] = useState(getTasks());
@@ -43,16 +43,18 @@ function App() {
 
   //hanterar state för modalen som redigerar kolumner
   const [showColumnSettingsModal, setShowColumnSettingsModal] = useState(false)
+  //håller id på den kolumn som anändaren vill redigera:
+  const [columnToEdit, setColumnToEdit] = useState(false);
 
 
-  console.log(columns)
+
   return (
     <div className='app_container'>
 
       <columnsContext.Provider
         value={{
           columns, setColumns,
-          showColumnSettingsModal, setShowColumnSettingsModal
+          showColumnSettingsModal, setShowColumnSettingsModal, columnToEdit, setColumnToEdit
         }}>
 
         <Header />

@@ -5,18 +5,18 @@ import { useContext, useState } from "react";
 
 import { columnsContext } from "../App";
 
-export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
+export default function ColumnsSettingsModal() {
 
 
-    //data om de kollumner som finns:
-    const { columns, setColumns, setShowColumnSettingsModal } = useContext(columnsContext);
+    const { columns, setColumns, setShowColumnSettingsModal, columnToEdit, setColumnToEdit } = useContext(columnsContext);
     console.log(columns)
+    console.log("columnToEdit:", columnToEdit)
 
 
 
-    const [name, setName] = useState("");
-    const [color, setColor] = useState("grey");
-    const [markChildsAsDone, setMarkChildsAsDone] = useState(false);
+    const [name, setName] = useState(columnToEdit.columnName || "");
+    const [color, setColor] = useState(columnToEdit.columnColor || "grey");
+    const [markChildsAsDone, setMarkChildsAsDone] = useState(columnToEdit.markChildsAsDone || false);
 
     function handleChangeName(e) {
         setName(e.target.value)
@@ -39,33 +39,71 @@ export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
         if (!name) {
             alert("Vänligen Namnge Kolumnen")
         } else {
-            //annars spara...
-            console.log("confirm")
 
-            //Skaopar ett unikt ID:
-            let id = new Date;
-            id = "column" + id.getTime()
-            console.log("id:", id);
+            // om redigering av en redan existerande kolumn.....
+            if (columnToEdit) {
+                console.log("denna kolumnen finns redan, och uppdateras nu...");
 
+                // loopar igenom o returnerar kolumner. Om det är aktuell kolumn byts den ut mot det nya objektet:
+                const newArray = columns.map((column) => {
+                    if (column.columnID === columnToEdit.columnID) {
+                        return {
+                            columnName: name,
+                            //Det befintliga idt:
+                            columnID: column.columnID,
+                            columnColor: color,
+                            markChildsAsDone: markChildsAsDone,
+                        }
+                    } else {
+                        return column
+                    }
+                })
 
-            //Adderar den nya kolumnen
-            const newColumn = {
-                columnName: name,
-                columnID: id,
-                columnColor: color,
-                markChildsAsDone: markChildsAsDone,
+                // byter ut kolumner mot den nya arrayen.
+                setColumns(newArray)
             }
-            console.log(newColumn)
+            // annars: om ny kolumn:....
+            else {
+                console.log("Detta är en ny kolumn och läggs nu till...")
 
-            setColumns((c) => [...c, newColumn]);
+                //Skaopar ett nytt unikt ID:
+                let id = new Date;
+                id = "column" + id.getTime()
+                console.log("id:", id);
 
+
+                //skapar den nya kolumnen:
+                const newColumn = {
+                    columnName: name,
+                    columnID: id, //nytt unikt id vare här.
+                    columnColor: color,
+                    markChildsAsDone: markChildsAsDone,
+                }
+                console.log(newColumn)
+
+                // sätter kolumner:
+                // Sprider ut gamla objekt och lägger till det nya.
+                setColumns((c) => [...c, newColumn]);
+            }
+
+
+
+
+
+            //nollställer state som visar modal
             setShowColumnSettingsModal(false)
+            //nollställer state som eventuellt håller en kolumn att redigera.
+            setColumnToEdit(false)
         }
     }
 
     //stänger modalen bara:
     function handleCancel() {
+
+        //nollställer state som visar modal
         setShowColumnSettingsModal(false)
+        //nollställer state som eventuellt håller en kolumn att redigera.
+        setColumnToEdit(false)
     }
 
 
@@ -76,7 +114,7 @@ export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
     const content = <>
 
         <div className="columnSettingsModal">
-            <div className="body">
+            <div className="body" >
 
                 <h1>
                     <input type="text"
@@ -86,7 +124,9 @@ export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
                         style={{
                             fontSize: "inherit",
                             fontStyle: "inherit",
-                            fontWeight: "inherit"
+                            fontWeight: "inherit",
+                            border: `1px solid ${color}`,
+                            borderBottom: `0.5rem solid ${color}`
                         }} />
                 </h1>
 
@@ -96,6 +136,8 @@ export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
                         name="markChildsAsDoneCheckbox"
                         defaultValue="true"
                         onChange={handleChandeMarkChildsAsDone}
+                        // checked avspeglar sig beoende på värdet av variabeln markChildsAsDone
+                        checked={markChildsAsDone}
                     />
 
                     <label htmlFor="markChildsAsDoneCheckbox"

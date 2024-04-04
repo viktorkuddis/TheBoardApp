@@ -16,6 +16,7 @@ import { columnsContext, tasksContext } from "../App";
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
+    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(columnsContext)
 
 
     //UPPGIFTER:
@@ -33,7 +34,11 @@ export default function BoardColumn({ column }) {
     return (<>
         <div className="board-column" >
 
-            <div className="board-title_container">
+            <div className="board-title_container"
+                onClick={() => {
+                    setShowColumnSettingsModal(true);
+                    setColumnToEdit(column);
+                }}>
                 {/* sätter färg och text i kolumnens överskrift : */}
                 <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
             </div>
