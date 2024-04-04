@@ -324,6 +324,7 @@ header {
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
 }
 
 .task-card-footer_container .moveTask_dropwdown {
@@ -370,6 +371,13 @@ header {
   overflow: auto;
 
   box-shadow: 0px 1rem 2rem 0 rgba(0, 0, 0, 0.2);
+
+
+  @media(max-width: 450px) {
+    height: 100svh;
+    width: 100svw;
+  }
+
 }
 
 /* -------------------- */
@@ -521,7 +529,8 @@ select:hover,
 
 input,
 select {
-  /* font-size: inherit; */
+  font-size: inherit;
+  /* font-size: 0.5rem; */
   padding: 0.25rem;
   border: 1px solid hsl(0, 0%, 90%);
   border-radius: 0.25rem;
@@ -537,7 +546,11 @@ select {
   display: flex;
   /* background-color: #535bf2; */
   justify-content: space-between;
-  gap: 2rem;
+  flex-wrap: wrap;
+
+  gap: 1rem;
 }
 
-.footer-buttons_container .danger-zone {}
+.footer-buttons_container .danger-zone {
+  /* nothing here */
+}
