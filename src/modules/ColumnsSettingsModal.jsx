@@ -9,7 +9,7 @@ export default function ColumnsSettingsModal() {
 
 
     const { columns, setColumns, setShowColumnSettingsModal, columnToEdit, setColumnToEdit } = useContext(columnsContext);
-    console.log(columns)
+    // console.log(columns)
     console.log("columnToEdit:", columnToEdit)
 
 
@@ -99,11 +99,26 @@ export default function ColumnsSettingsModal() {
 
     //stänger modalen bara:
     function handleCancel() {
-
         //nollställer state som visar modal
         setShowColumnSettingsModal(false)
         //nollställer state som eventuellt håller en kolumn att redigera.
         setColumnToEdit(false)
+    }
+
+    //radera kolumn.....
+    function handleDeleteCollumn() {
+
+        // console.log(columnToEdit)
+        // byt ut columns mot ny array där den aktuella kolumnen är bortfiltrerad.
+
+        const newArray = columns.filter((column) => { return column.columnID !== columnToEdit.columnID })
+        setColumns(newArray)
+
+        //nollställer state som visar modal
+        setShowColumnSettingsModal(false)
+        //nollställer state med aktuell kolumn att redigera.
+        setColumnToEdit(false)
+
     }
 
 
@@ -177,7 +192,8 @@ export default function ColumnsSettingsModal() {
             <div className="footer-buttons_container">
 
                 <div className="danger-zone">
-                    <button className="danger-btn"> Radera</button>
+                    {/* // OM Kolumnen är redan existerande så visas radera-knappen*/}
+                    {columnToEdit && <button className="danger-btn" onClick={handleDeleteCollumn}> Radera</button>}
                 </div>
 
                 <div className="footer">
