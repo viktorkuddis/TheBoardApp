@@ -16,7 +16,7 @@ export default function Header() {
         const password = "Nollställ"
 
         const confirmation = prompt(`⚠️ NOLLSTÄLL BOARD ⚠️
-Du håller på att nollställa arbetsutan. ALLA uppgifter och kolumner kommer gå förlorade.
+Du håller på att nollställa arbetsytan. ALLA uppgifter och kolumner kommer gå förlorade.
 Detta går inte att ångra.
 
 Är du säker?
