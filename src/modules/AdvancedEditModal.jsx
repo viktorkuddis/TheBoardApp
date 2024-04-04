@@ -224,8 +224,6 @@ Detta går inte att ångra!`)
                     </div>
                 </div>
 
-
-
                 <textarea
                     className="description"
                     placeholder="Beskrivning...."
@@ -233,31 +231,36 @@ Detta går inte att ångra!`)
                     value={description}
                 >
                 </textarea>
-                <div>
-                    <div className="time-stams_container" style={{ marginBottom: "0.5rem" }} >
-                        <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
-                        <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
-                    </div>
 
-                    <div className="footer-buttons_container">
 
-                        <div className="danger-zone">
-                            <button className="danger-btn" onClick={handleDeleteTask}> Radera</button>
-                        </div>
-
-                        <div>
-                            <button className="secondary-btn"
-                                onClick={() => { setadvancedEditisOpend(false) }}>Avbryt</button>
-                            <button className="primary-btn"
-                                onClick={handleExitAndSaveModal}
-                                style={{ marginLeft: "1rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
-                                <b>OK</b>
-                            </button>
-                        </div>
-
-                    </div>
+                <div className="time-stams_container" style={{ marginBottom: "0.5rem" }} >
+                    <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
+                    <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
                 </div>
 
+
+
+
+
+
+
+            </div>
+
+            <div className="footer-buttons_container">
+
+                <div className="danger-zone">
+                    <button className="danger-btn" onClick={handleDeleteTask}> Radera</button>
+                </div>
+
+                <div>
+                    <button className="secondary-btn"
+                        onClick={() => { setadvancedEditisOpend(false) }}>Avbryt</button>
+                    <button className="primary-btn"
+                        onClick={handleExitAndSaveModal}
+                        style={{ marginLeft: "1rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
+                        <b>OK</b>
+                    </button>
+                </div>
 
             </div>
             {showAlert && <Alert alertContent={"⚠️ Ge uppgiften en titel"} />}
