@@ -2,17 +2,14 @@ import './App.css'
 import './AddTaskCard.css'
 import './Animations.css'
 
-//modeuler:
+import { useEffect, useState, createContext } from 'react'
+
+//komponenter:
 import Header from './modules/Header'
 import ColumnsContainer from './modules/ColumnsContainer'
 
-import Modal from './modules/Modal'
-import Alert from './modules/Alert'
-
-import { useEffect, useState, createContext } from 'react'
-
-
 import { getTasks, saveTasks } from './utils/ApiUtils'
+import { getColumns, saveColumns } from './utils/ApiUtils'
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
@@ -23,30 +20,19 @@ export const tasksContext = createContext();
 
 function App() {
 
+
   //Värde för columnContext
-  const [columns, setColumns] = useState([
-    //initiell data som utgör standardkolumner:
-    {
-      columnName: "Todos",
-      columnID: 1,
-      columnColor: "mediumpurple",
-      markChildsAsDone: false,
-    }, {
-      columnName: "Doing",
-      columnID: 2,
-      columnColor: "lightskyblue",
-      markChildsAsDone: false,
-    }, {
-      columnName: "Done",
-      columnID: 3,
-      columnColor: "lightgreen",
-      markChildsAsDone: true,
-    }
-  ]);
+  const [columns, setColumns] = useState(getColumns());
+  console.log(columns)
 
   // Värde för tasks
   const [tasks, setTasks] = useState(getTasks());
   // console.log(tasks);
+
+  // Spara columns när variabeln columns uppdateras:
+  useEffect(() => {
+    saveColumns(columns);
+  }, [columns])
 
   // Spara tasks när variabeln tasks uppdateras:
   useEffect(() => {
@@ -54,10 +40,9 @@ function App() {
   }, [tasks])
 
 
+
   return (
     <div className='app_container'>
-
-
 
       <Header />
 
@@ -68,16 +53,6 @@ function App() {
 
         </tasksContext.Provider>
       </columnsContext.Provider>
-
-      {/* <Modal /> */}
-      {/* <Modal modalContent={modalContent} /> */}
-
-
-
-
-
-
-
 
     </div>
   )

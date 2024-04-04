@@ -24,7 +24,7 @@ export default function Header() {
                 < button onClick={handleButtonClick} > Ny Kollumn</button >
             </div>
 
-            <ColumnsSettingsModal />
+            {/* <ColumnsSettingsModal /> */}
 
         </header>
     )
