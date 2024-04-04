@@ -65,7 +65,7 @@ export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
 
     //stänger modalen bara:
     function handleCancel() {
-        setshowColumnSettingsModal(false)
+        setShowColumnSettingsModal(false)
     }
 
 
