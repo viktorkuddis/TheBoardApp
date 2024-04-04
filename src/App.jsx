@@ -41,18 +41,20 @@ function App() {
   }, [tasks])
 
 
-
+  console.log(columns)
   return (
     <div className='app_container'>
 
-      <Header />
-
       <columnsContext.Provider value={{ columns, setColumns }}>
+
+        <Header />
+
         <tasksContext.Provider value={{ tasks, setTasks }}>
 
           <ColumnsContainer />
 
         </tasksContext.Provider>
+
       </columnsContext.Provider>
 
     </div>

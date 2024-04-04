@@ -36,5 +36,5 @@ export function getColumns() {
 // argument är array av alla tasks som ska sparas.
 export function saveColumns(arrayOfColumns) {
     const dataToSave = JSON.stringify(arrayOfColumns);
-    localStorage.setItem("tasks", dataToSave)
+    localStorage.setItem("columns", dataToSave)
 }
