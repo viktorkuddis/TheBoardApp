@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import { columnColors } from "../utils/ColumnsUtils";
 import { useContext, useState } from "react";
 
-import { columnsContext } from "../App";
+import { columnsContext, tasksContext } from "../App";
 
 export default function ColumnsSettingsModal() {
 
@@ -11,6 +11,10 @@ export default function ColumnsSettingsModal() {
     const { columns, setColumns, setShowColumnSettingsModal, columnToEdit, setColumnToEdit } = useContext(columnsContext);
     // console.log(columns)
     console.log("columnToEdit:", columnToEdit)
+
+    const { tasks, setTasks } = useContext(tasksContext);
+    console.log(tasks)
+
 
 
 
@@ -107,17 +111,30 @@ export default function ColumnsSettingsModal() {
 
     //radera kolumn.....
     function handleDeleteCollumn() {
-
         // console.log(columnToEdit)
-        // byt ut columns mot ny array där den aktuella kolumnen är bortfiltrerad.
 
-        const newArray = columns.filter((column) => { return column.columnID !== columnToEdit.columnID })
-        setColumns(newArray)
+        const confirmation = confirm(`⚠️ RADERA KOLUMN ⚠️
+Du håller på att radera kolumnen "${columnToEdit.columnName}".
 
-        //nollställer state som visar modal
-        setShowColumnSettingsModal(false)
-        //nollställer state med aktuell kolumn att redigera.
-        setColumnToEdit(false)
+Är du säker?
+Detta går inte att ångra!`)
+
+        // om användaren bekräftar att den vill ta bort kolumnen....
+        if (confirmation) {
+            // byt ut columns mot ny array där den aktuella kolumnen är bortfiltrerad.
+            const newArrayofColumns = columns.filter((column) => { return column.columnID !== columnToEdit.columnID })
+            setColumns(newArrayofColumns)
+
+            // Radera task som tillhör kolumnen:
+            // filtrera bort alla task där aktuellt columnID är samma sak som taskets parentColumnId 
+            const newArrayOfTasks = tasks.filter((task) => { return task.parentColumnId !== columnToEdit.columnID })
+            setTasks(newArrayOfTasks);
+
+            //nollställer state som visar modal
+            setShowColumnSettingsModal(false)
+            //nollställer state med aktuell kolumn att redigera.
+            setColumnToEdit(false)
+        }
 
     }
 

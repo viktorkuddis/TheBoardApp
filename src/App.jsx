@@ -57,9 +57,11 @@ function App() {
           showColumnSettingsModal, setShowColumnSettingsModal, columnToEdit, setColumnToEdit
         }}>
 
-        <Header />
-
         <tasksContext.Provider value={{ tasks, setTasks }}>
+
+          <Header />
+
+
 
           <ColumnsContainer />
 
