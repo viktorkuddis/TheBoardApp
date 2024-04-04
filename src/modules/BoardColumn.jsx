@@ -32,9 +32,10 @@ export default function BoardColumn({ column }) {
 
     return (<>
         <div className="board-column" >
-
-            {/* sätter färg och text i kolumnens överskrift : */}
-            <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
+            <div className="board-title_container">
+                {/* sätter färg och text i kolumnens överskrift : */}
+                <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
+            </div>
 
             {/* container som ska innehålla dynamisk lista med task: */}
             <div className="board-column-cards-list_container">

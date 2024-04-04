@@ -191,6 +191,25 @@ header {
   overflow: hidden;
 }
 
+.board-title_container {
+  /* background-color: #535bf2; */
+  position: relative;
+}
+
+.board-title_container:hover {
+  /* background-color: #22d63d; */
+  cursor: pointer;
+}
+
+.board-title_container:hover:after {
+  content: "Redigera";
+  font-size: 0.8rem;
+  color: grey;
+  position: absolute;
+  top: -1rem;
+  right: 0;
+}
+
 .board-column-cards-list_container {
   /* background-color: lightblue; */
   overflow: auto;

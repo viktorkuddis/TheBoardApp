@@ -50,7 +50,7 @@ export default function ColumnsSettingsModal() {
                                     value={color.cssColorValue} />
 
                                 <label htmlFor={color.colorNickName}
-                                    style={{ backgroundColor: color.cssColorValue, color: "White", borderRadius: "0.25rem", cursor: "pointer" }}>{color.colorNickName}</label>
+                                    style={{ backgroundColor: color.cssColorValue }}>{color.colorNickName}</label>
                             </div>
                         ))}
                     </div>
