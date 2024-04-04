@@ -55,7 +55,7 @@ Skriv "${password}" för att bekräfta.`);
 
 
             <div style={{ marginLeft: "auto" }}>
-                <button onClick={() => { setShowColumnSettingsModal(true) }} > Ny Kollumn</button >
+                <button onClick={() => { setShowColumnSettingsModal(true) }} > Ny Kolumn</button >
             </div>
 
 
