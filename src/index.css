@@ -135,8 +135,27 @@ header {
   padding: 1rem;
   display: flex;
 
+
+
   h1 {
     font-size: 1.3rem;
+
+  }
+
+  .reset {
+    color: grey;
+    font-size: 0.8rem;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+
+  }
+
+  .reset:hover {
+    color: red;
+    cursor: pointer;
   }
 }
 

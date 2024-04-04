@@ -114,10 +114,11 @@ export default function ColumnsSettingsModal() {
         // console.log(columnToEdit)
 
         const confirmation = confirm(`⚠️ RADERA KOLUMN ⚠️
-Du håller på att radera kolumnen "${columnToEdit.columnName}".
+Du håller på att radera kolumnen"${columnToEdit.columnName}".
+Alla uppfigter i kolumnen kommer att gå förlorade.
+Detta går inte att ångra!
 
-Är du säker?
-Detta går inte att ångra!`)
+Är du säker på att du viill radera kolumnen?`)
 
         // om användaren bekräftar att den vill ta bort kolumnen....
         if (confirmation) {
@@ -150,6 +151,7 @@ Detta går inte att ångra!`)
 
                 <h1>
                     <input type="text"
+                        autoFocus
                         placeholder=" Kolumnens Namn"
                         value={name}
                         onChange={handleChangeName}
