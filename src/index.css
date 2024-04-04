@@ -324,6 +324,7 @@ header {
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
 }
 
 .task-card-footer_container .moveTask_dropwdown {
@@ -521,7 +522,8 @@ select:hover,
 
 input,
 select {
-  /* font-size: inherit; */
+  font-size: inherit;
+  /* font-size: 0.5rem; */
   padding: 0.25rem;
   border: 1px solid hsl(0, 0%, 90%);
   border-radius: 0.25rem;
