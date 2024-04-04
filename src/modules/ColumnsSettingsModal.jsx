@@ -115,10 +115,10 @@ export default function ColumnsSettingsModal() {
 
         const confirmation = confirm(`⚠️ RADERA KOLUMN ⚠️
 Du håller på att radera kolumnen"${columnToEdit.columnName}".
-Alla uppfigter i kolumnen kommer att gå förlorade.
+Alla uppgigter i kolumnen kommer att gå förlorade.
 Detta går inte att ångra!
 
-Är du säker på att du viill radera kolumnen?`)
+Är du säker på att du vill radera kolumnen?`)
 
         // om användaren bekräftar att den vill ta bort kolumnen....
         if (confirmation) {
