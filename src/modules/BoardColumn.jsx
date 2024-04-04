@@ -32,6 +32,7 @@ export default function BoardColumn({ column }) {
 
     return (<>
         <div className="board-column" >
+
             <div className="board-title_container">
                 {/* sätter färg och text i kolumnens överskrift : */}
                 <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>

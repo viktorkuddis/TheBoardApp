@@ -5,11 +5,11 @@ import { useContext, useState } from "react";
 
 import { columnsContext } from "../App";
 
-export default function ColumnsSettingsModal() {
+export default function ColumnsSettingsModal({ setshowColumnSettingsModal }) {
 
 
     //data om de kollumner som finns:
-    const { columns, setColumns } = useContext(columnsContext);
+    const { columns, setColumns, setShowColumnSettingsModal } = useContext(columnsContext);
     console.log(columns)
 
 
@@ -35,7 +35,6 @@ export default function ColumnsSettingsModal() {
 
 
     function handleConfirmColumn() {
-
         //om inget namn finns så studsa på det!
         if (!name) {
             alert("Vänligen Namnge Kolumnen")
@@ -49,6 +48,7 @@ export default function ColumnsSettingsModal() {
             console.log("id:", id);
 
 
+            //Adderar den nya kolumnen
             const newColumn = {
                 columnName: name,
                 columnID: id,
@@ -59,8 +59,13 @@ export default function ColumnsSettingsModal() {
 
             setColumns((c) => [...c, newColumn]);
 
+            setShowColumnSettingsModal(false)
         }
+    }
 
+    //stänger modalen bara:
+    function handleCancel() {
+        setshowColumnSettingsModal(false)
     }
 
 
@@ -134,7 +139,7 @@ export default function ColumnsSettingsModal() {
                 </div>
 
                 <div className="footer">
-                    <button className="secondary-btn">Avbryt</button>
+                    <button className="secondary-btn" onClick={handleCancel}>Avbryt</button>
                     <button className="primary-btn"
                         style={{ marginLeft: "1rem", paddingLeft: "2rem", paddingRight: "2rem" }}
                         onClick={handleConfirmColumn}>

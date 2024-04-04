@@ -9,6 +9,7 @@ import { useEffect, useState, createContext } from 'react'
 import Header from './modules/Header'
 import ColumnsContainer from './modules/ColumnsContainer'
 
+
 import { getTasks, saveTasks } from './utils/ApiUtils'
 import { getColumns, saveColumns } from './utils/ApiUtils'
 
@@ -40,12 +41,19 @@ function App() {
     saveTasks(tasks);
   }, [tasks])
 
+  //hanterar state för modalen som redigerar kolumner
+  const [showColumnSettingsModal, setShowColumnSettingsModal] = useState(false)
+
 
   console.log(columns)
   return (
     <div className='app_container'>
 
-      <columnsContext.Provider value={{ columns, setColumns }}>
+      <columnsContext.Provider
+        value={{
+          columns, setColumns,
+          showColumnSettingsModal, setShowColumnSettingsModal
+        }}>
 
         <Header />
 
@@ -53,8 +61,8 @@ function App() {
 
           <ColumnsContainer />
 
-        </tasksContext.Provider>
 
+        </tasksContext.Provider>
       </columnsContext.Provider>
 
     </div>
