@@ -1,6 +1,7 @@
 import './App.css'
 import './AddTaskCard.css'
 import './Animations.css'
+import './ColumnsSettingsModal.css'
 
 import { useEffect, useState, createContext } from 'react'
 
