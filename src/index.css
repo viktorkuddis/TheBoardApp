@@ -380,7 +380,7 @@ header {
 
 }
 
-/* -------------------- */
+/* ---------SROLLBARS----------- */
 
 
 ::-webkit-scrollbar {
@@ -547,6 +547,7 @@ select {
   /* background-color: #535bf2; */
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-top: 0.5rem;
 
   gap: 1rem;
 }
