@@ -269,6 +269,6 @@ Detta går inte att ångra!`)
     return (
 
         <Modal modalContent={content} setadvancedEditisOpend={setadvancedEditisOpend} />
-        // <Modal />
+
     );
 };

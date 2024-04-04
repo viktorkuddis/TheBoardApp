@@ -15,25 +15,12 @@ export default function ColumnsContainer() {
     // hämtar kontext för kolumner
     const { columns, setColumns } = useContext(columnsContext);
 
-    // todo Eventuellt flytta denna knappen upp i headern:
-    // TODO: // TODO: // TODO: // TODO: TODO:
-    function handleButtonClick() {
-        // todo: function for creating a new intance of column. WHat r the  funtions name? 
-        const columnToAdd = {
-            columnName: "mamam",
-            columnID: columns.length + 1,
-            columnColor: "green"
-        }
 
-        setColumns((c) => [...c, columnToAdd]);
-    }
-    // todo -------------------------------------
 
 
     return (
         <>
-            {/* // todo: Knapp för att skapa ny kollumn finns här. Vad ska funktionn heta? */}
-            < button onClick={handleButtonClick} > Ny Kollumn</button >
+
 
 
             <main className='columns-container_main'>

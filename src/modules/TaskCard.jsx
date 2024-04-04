@@ -10,6 +10,7 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
 
     const { columns, setColumns } = useContext(columnsContext)
+    const { tasks, setTasks } = useContext(tasksContext);
 
     //Variabel som togglar om modalen för avancerad edit ska vara öppen eller ej
     const [advancedEditisOpend, setadvancedEditisOpend] = useState(false);
@@ -19,11 +20,25 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
         if (e.target.nodeName !== "SELECT") {
             setadvancedEditisOpend(true);
             console.log("klick på kort")
-
         }
+        // console.log(e)
+    }
 
-        console.log(e)
+    function handleChangeCardColumn(e) {
+        //byta det aktuella kortets ParentColumnID
+        console.log(task)
+        console.log(e.target.value)
 
+        //vi returnerar alla objekt som dom är förutom om id matchar med det aktuella kortet....
+        //---då sprder vi ut allt och uppdaterar parentColllumnId till det valda.
+        const newArray = tasks.map((t) => {
+            if (t.id == task.id) {
+                return { ...t, parentColumnId: e.target.value }
+            } else {
+                return t
+            }
+        })
+        setTasks(newArray)
     }
 
     return (
@@ -47,7 +62,7 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
 
 
-                    <select name="Flytta Uppgift" className="moveTask_dropwdown" defaultValue="Flytta">
+                    <select name="Flytta Uppgift" className="moveTask_dropwdown" defaultValue="Flytta" onChange={handleChangeCardColumn}>
                         {/* generera option för varje kolumn som finns:*/}
                         <option value="Flytta" disabled>Flytta...</option>
                         {columns.map((column) => {
