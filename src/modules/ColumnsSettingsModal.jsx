@@ -114,8 +114,8 @@ export default function ColumnsSettingsModal() {
         // console.log(columnToEdit)
 
         const confirmation = confirm(`⚠️ RADERA KOLUMN ⚠️
-Du håller på att radera kolumnen"${columnToEdit.columnName}".
-Alla uppgigter i kolumnen kommer att gå förlorade.
+Du håller på att radera kolumnen "${columnToEdit.columnName}".
+Alla uppgifter i kolumnen kommer att gå förlorade.
 Detta går inte att ångra!
 
 Är du säker på att du vill radera kolumnen?`)
