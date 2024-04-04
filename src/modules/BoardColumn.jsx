@@ -16,6 +16,7 @@ import { columnsContext, tasksContext } from "../App";
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
+    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(columnsContext)
 
 
     //UPPGIFTER:
@@ -33,15 +34,22 @@ export default function BoardColumn({ column }) {
     return (<>
         <div className="board-column" >
 
-            {/* sätter färg och text i kolumnens överskrift : */}
-            <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
+            <div className="board-title_container"
+                onClick={() => {
+                    setShowColumnSettingsModal(true);
+                    setColumnToEdit(column);
+                }}>
+                {/* sätter färg och text i kolumnens överskrift : */}
+                <h2 style={{ backgroundColor: column.columnColor, color: "white" }}>{column.columnName}</h2>
+            </div>
 
             {/* container som ska innehålla dynamisk lista med task: */}
             <div className="board-column-cards-list_container">
 
                 {/* Renderar ut korten(tasks) i kolumnen om dess parentColumnID stämmer med aktuella kolumnens ID */}
                 {tasks.map((task) => (
-                    column.columnID === task.parentColumnId
+
+                    column.columnID == task.parentColumnId
                     &&
                     (
 
@@ -77,10 +85,10 @@ export default function BoardColumn({ column }) {
 
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
-            {/* detta är lite testinformation som renderas: */}
-            <p>columnID: {column.columnID}</p>
+            {/* detta är lite testinformation som renderas på sidan: */}
+            {/* <p>columnID: {column.columnID}</p>
             <p>Färg: {column.columnColor}</p>
-            <p>{(column.markChildsAsDone && "Markeras som klar")}</p>
+            <p>{(column.markChildsAsDone && "Markeras som klar")}</p> */}
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}

@@ -27,7 +27,7 @@
 }
 
 .addTask_Card h4:hover,
-.addTask_Card p:hover,
+.addTask_Card .description-input_addTaskCard:hover,
 .addTask_Card input:hover,
 .addTask_Card textarea:hover {
     background-color: hsla(0, 0%, 50%, 0.10);

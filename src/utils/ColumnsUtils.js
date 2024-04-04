@@ -1,8 +1,30 @@
 
+// Detta är columnerna som användaren börjar med:
+export const startColumns = [{
+    columnName: "Todos",
+    columnID: 1,
+    columnColor: "mediumpurple",
+    markChildsAsDone: false,
+}, {
+    columnName: "Doing",
+    columnID: 2,
+    columnColor: "lightskyblue",
+    markChildsAsDone: false,
+}, {
+    columnName: "Done",
+    columnID: 3,
+    columnColor: "lightgreen",
+    markChildsAsDone: true,
+}]
 
-// Variable for the colors to provide for the user!
-//colorNickName is the name to display on screen,
-// cssColorValue is the value to use when styling based on the users choise.
+
+
+// Variabler för färgerna som erbjuds användaren: 
+
+// colorNickName är namnet på färgen som ska erbjudas användaren.
+
+// cssColorValue är värdet av färgen som används dynamisk i stylingen.
+
 export const columnColors = [
     {
         colorNickName: "Röd",
@@ -41,7 +63,7 @@ export const columnColors = [
 ];
 
 
-/* Also: here is some css for trying the colors out:
+/* Här är också lite css för tesning av färgerna:
 html {
   background-color: lightcoral;
   background-color: lightsalmon;

@@ -137,7 +137,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                     <p className="placeholder_add-class-card">{placeholderForDescription}
                     </p>}
 
-                <p contentEditable={true}
+                <p contentEditable={true} className="description-input_addTaskCard"
                     style={{ position: "relative", zIndex: "5", padding: "0.2rem 0rem" }}
                     onInput={handleDescription} onKeyDown={handleEnterKey}>
                 </p>
@@ -152,7 +152,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 fontSize: "0.8rem",
                 backgroundColor: "hsl(0, 0%, 95%)",
                 marginTop: "0.5rem"
-            }}>Rensa deadline</button>
+            }} >Rensa deadline</button>
 
 
             {/* nedre knappar här: */}
@@ -161,6 +161,10 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
                 <button onClick={exitAddTaskCard} className="secondary-btn" style={{ marginLeft: "0.5rem" }}>Avbryt</button>
                 <button style={{ marginLeft: "0.5rem" }} >✏️</button>
                 <button onClick={addNewTask} className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
+                <p style={{
+                    color: "grey",
+                    fontSize: "0.8rem"
+                }} > {`(Enter)`}</p>
             </div>
 
             {/* //Villkorsstyrd rendering för Alert om namn saknas vid försök att lägga till uppgift:*/}

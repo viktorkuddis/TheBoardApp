@@ -1,18 +1,17 @@
 import './App.css'
 import './AddTaskCard.css'
 import './Animations.css'
-
-//modeuler:
-import Header from './modules/Header'
-import ColumnsContainer from './modules/ColumnsContainer'
-
-import Modal from './modules/Modal'
-import Alert from './modules/Alert'
+import './ColumnsSettingsModal.css'
 
 import { useEffect, useState, createContext } from 'react'
 
+//komponenter:
+import Header from './modules/Header'
+import ColumnsContainer from './modules/ColumnsContainer'
+
 
 import { getTasks, saveTasks } from './utils/ApiUtils'
+import { getColumns, saveColumns } from './utils/ApiUtils'
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
@@ -23,61 +22,52 @@ export const tasksContext = createContext();
 
 function App() {
 
+
   //Värde för columnContext
-  const [columns, setColumns] = useState([
-    //initiell data som utgör standardkolumner:
-    {
-      columnName: "Todo",
-      columnID: 1,
-      columnColor: "mediumpurple",
-      markChildsAsDone: false,
-    }, {
-      columnName: "Doing",
-      columnID: 2,
-      columnColor: "lightskyblue",
-      markChildsAsDone: false,
-    }, {
-      columnName: "Done jhksh sdjhf djfh djfhd j hdjfh jdhf jhf djhf dj",
-      columnID: 3,
-      columnColor: "lightgreen",
-      markChildsAsDone: true,
-    }
-  ]);
+  const [columns, setColumns] = useState(getColumns());
+  // console.log(columns)
 
   // Värde för tasks
   const [tasks, setTasks] = useState(getTasks());
   // console.log(tasks);
+
+  // Spara columns när variabeln columns uppdateras:
+  useEffect(() => {
+    saveColumns(columns);
+  }, [columns])
 
   // Spara tasks när variabeln tasks uppdateras:
   useEffect(() => {
     saveTasks(tasks);
   }, [tasks])
 
+  //hanterar state för modalen som redigerar kolumner
+  const [showColumnSettingsModal, setShowColumnSettingsModal] = useState(false)
+  //håller id på den kolumn som anändaren vill redigera:
+  const [columnToEdit, setColumnToEdit] = useState(false);
+
+
 
   return (
     <div className='app_container'>
 
+      <columnsContext.Provider
+        value={{
+          columns, setColumns,
+          showColumnSettingsModal, setShowColumnSettingsModal, columnToEdit, setColumnToEdit
+        }}>
 
-
-      <Header />
-
-      <columnsContext.Provider value={{ columns, setColumns }}>
         <tasksContext.Provider value={{ tasks, setTasks }}>
+
+          <Header />
+
+
 
           <ColumnsContainer />
 
+
         </tasksContext.Provider>
       </columnsContext.Provider>
-
-      {/* <Modal /> */}
-      {/* <Modal modalContent={modalContent} /> */}
-
-
-
-
-
-
-
 
     </div>
   )
