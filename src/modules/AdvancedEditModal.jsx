@@ -214,7 +214,7 @@ Detta går inte att ångra!`)
                         <label htmlFor="Flytta Uppgift:" style={{ fontSize: "0.8rem" }}>Flytta uppgift:</label>
                         <br />
 
-                        <select name="Flytta Uppgift" defaultValue={currentTask.parentColumnId} onChange={handleChangeParentColumnID}>
+                        <select name="Flytta Uppgift" defaultValue={currentTask.parentColumnId} style={{ maxWidth: "250px" }} onChange={handleChangeParentColumnID}>
                             {/* generera option för varje kolumn som finns:*/}
                             {columns.map((column) => {
                                 return <option key={column.columnID} value={column.columnID}>{column.columnName}</option>
