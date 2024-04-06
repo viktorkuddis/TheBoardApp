@@ -8,12 +8,12 @@ import { useEffect, useState, createContext } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Sidor:
-import StartPage from './assets/Pages/StartPage'
-import SingleColumnView from './assets/Pages/SingleColumnView'
-import OuupsPage from './assets/Pages/OuupsPage'
+import StartPage from './Pages/StartPage'
+import SingleColumnView from './Pages/SingleColumnView'
+import OuupsPage from './Pages/OuupsPage'
 
 //layoutfil:
-import Layout from './assets/Pages/Layout'
+import Layout from './Pages/Layout'
 
 
 //KONTEXT FÖR KOLUMNER
@@ -71,9 +71,8 @@ function App() {
               <Route path='/' element={<Layout />}>
                 <Route index element={<StartPage />} />
                 <Route path="*" element={<OuupsPage />} />
+                <Route path="column/:id" element={<SingleColumnView />} />
               </Route>
-
-              <Route path="column/:id" element={<SingleColumnView />} />
 
             </Routes>
           </Router>
@@ -83,7 +82,7 @@ function App() {
 
 
 
-    </div>
+    </div >
 
   )
 }

@@ -1,15 +1,15 @@
 
 
 import { useContext } from "react"
-import BoardColumn from "../../components/BoardColumn"
-import AddTaskCard from "../../components/AddTaskCard"
+import BoardColumn from "../components/BoardColumn"
+
 
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 import { useParams, Link } from 'react-router-dom'
 
-import { columnsContext } from "../../App"
+import { columnsContext } from "../App"
 
 
 export default function SingleColumnView() {
@@ -23,8 +23,6 @@ export default function SingleColumnView() {
     // Sätter boleanen som öppnr inställningarna för kolumnen till false, ifall man kommer direkt därifrån och seda klickar sig tillbaka kommer doen fortfarande vara öppen om inte detta görs.
     setShowColumnSettingsModal(false);
 
-
-
     return (
         <>
 
@@ -32,21 +30,17 @@ export default function SingleColumnView() {
                 <br />
                 <Link to="/"> <IoMdArrowRoundBack /> Tillbaka till boarden</Link>
             </div >
-
             <main className='columns-container_main'>
-                {/* //loopar igenom varje kolumn och visar bara den som tämmer överens med id i sökvägen. */}
+                {/* //loopar igenom varje kolumn och visar bara den som stämmer överens med id i sökvägen. */}
                 {columns.map((column) => {
                     console.log(column, column.columnID)
                     if (id == column.columnID) {
                         // console.log("id hämtades från parametern :", id)
                         return <BoardColumn column={column} />
-
                     }
+                })}
 
-                })
-                }
             </main>
-
 
 
 
