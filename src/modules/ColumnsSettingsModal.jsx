@@ -2,6 +2,8 @@ import Modal from "./Modal";
 
 import { columnColors } from "../utils/ColumnsUtils";
 import { useContext, useState } from "react";
+import { FiLink } from "react-icons/fi";
+
 
 import { Link } from "react-router-dom"
 
@@ -211,7 +213,7 @@ Detta går inte att ångra!
                 {/* // OM Kolumnen är redan existerande så erbjuds direktlänk till den : */}
                 {columnToEdit && <>
                     <br />
-                    <Link to={`/column/${columnToEdit.columnID}`}>Direktlänk till denna kolumn.</Link>
+                    <Link to={`/column/${columnToEdit.columnID}`}> <FiLink /> Direktlänk till denna kolumn.</Link>
                 </>}
 
 
