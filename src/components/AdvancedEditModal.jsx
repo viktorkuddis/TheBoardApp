@@ -1,5 +1,9 @@
 import { useContext, useEffect, useState } from "react";
+
+//Kontext
 import { tasksContext, columnsContext } from "../App";
+
+// komponenter:
 import Modal from "./Modal";
 import Alert from "./Alert";
 
@@ -8,7 +12,7 @@ import Alert from "./Alert";
 export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
 
     //taskIT är det aktuella taskets ID:
-    console.log(taskID)
+    // console.log(taskID)
 
     //alla uppgifter: 
     const { tasks, setTasks } = useContext(tasksContext)
@@ -26,10 +30,6 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const [showAlert, setShowAlert] = useState(false);
 
 
-
-
-
-
     const [title, setTitle] = useState(currentTask.title)
     const [parentColumnId, setParentColumnId] = useState(currentTask.parentColumnId)
     const [description, setDescription] = useState(currentTask.description || "")
@@ -37,9 +37,9 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const [deadlineTime, setDeadlineTime] = useState(currentTask.deadline ? currentTask.deadline.split(" ")[1] : "")
     const [timeStampLastEdited, setTimeStampLastEdited] = useState(currentTask.timeStampLastEdited)
     const [timeStampLastMoved, setTimeStampLastMoved] = useState(currentTask.settimeStampLastMoved);
-    //variabel som håller den aktuella kolumn som tasken just nu befinner sig i.
+    //variabel som håller den aktuella kolumn som tasken just nu befinner sig i:
     const [currentColumn, setCurrentColumn] = useState({});
-    console.log("kolumnen för tasken:currentColumn: ", currentColumn)
+    // console.log("kolumnen för tasken:currentColumn: ", currentColumn)
     // console.log("namnet på kolumnen:", currentColumn.columnName)
 
 
@@ -94,7 +94,6 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
         handleTimeStampLastEdited()
     }
 
-    //funktion för att bestämma storleken på textarean dynamisk:
 
 
 
@@ -168,9 +167,6 @@ Detta går inte att ångra!`)
         setTasks(newArray);
     }
 
-
-
-
     const content = <>
 
         <article className="advancedEditModal">
@@ -240,10 +236,6 @@ Detta går inte att ångra!`)
 
 
 
-
-
-
-
             </div>
 
             <div className="footer-buttons_container">
@@ -263,6 +255,8 @@ Detta går inte att ångra!`)
                 </div>
 
             </div>
+
+            {/* villkorsstyrd alert: */}
             {showAlert && <Alert alertContent={"⚠️ Ge uppgiften en titel"} />}
 
 

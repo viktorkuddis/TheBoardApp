@@ -1,37 +1,28 @@
-import './App.css'
+// Style:
 import './AddTaskCard.css'
 import './Animations.css'
 import './ColumnsSettingsModal.css'
 
 import { useEffect, useState, createContext } from 'react'
 
-//komponenter:
-import Header from './modules/Header'
-import ColumnsContainer from './modules/ColumnsContainer'
-
-import Layout from './modules/Layout'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Sidor:
-import StartPage from './modules/StartPage'
-import SingleColumnView from './modules/SingleColumnView'
-import OuupsPage from './modules/OuupsPage'
+import StartPage from './assets/Pages/StartPage'
+import SingleColumnView from './assets/Pages/SingleColumnView'
+import OuupsPage from './assets/Pages/OuupsPage'
 
+//layoutfil:
+import Layout from './assets/Pages/Layout'
 
-import { getTasks, saveTasks } from './utils/ApiUtils'
-import { getColumns, saveColumns } from './utils/ApiUtils'
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
-
 //KONTEXT FÖR TASKS
 export const tasksContext = createContext();
 
-
-
-
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { getTasks, saveTasks } from './utils/ApiUtils'
+import { getColumns, saveColumns } from './utils/ApiUtils'
 
 function App() {
 
@@ -63,10 +54,6 @@ function App() {
 
   return (
 
-
-
-
-
     <div className='app_container'>
 
       <columnsContext.Provider
@@ -80,22 +67,13 @@ function App() {
 
           <Router>
             <Routes>
+
               <Route path='/' element={<Layout />}>
                 <Route index element={<StartPage />} />
                 <Route path="*" element={<OuupsPage />} />
-
-
               </Route>
+
               <Route path="column/:id" element={<SingleColumnView />} />
-
-
-
-
-
-              {/* <ColumnsContainer /> */}
-
-              {/* <Header /> */}
-
 
             </Routes>
           </Router>

@@ -1,5 +1,5 @@
-import ColumnsContainer from "./ColumnsContainer"
-import Header from "./Header"
+import ColumnsContainer from "../../components/ColumnsContainer"
+import Header from "../../components/Header"
 
 
 export default function StartPage() {

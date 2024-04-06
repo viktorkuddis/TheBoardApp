@@ -1,26 +1,31 @@
-import Modal from "./Modal";
-
-import { columnColors } from "../utils/ColumnsUtils";
 import { useContext, useState } from "react";
-import { FiLink } from "react-icons/fi";
-
 
 import { Link } from "react-router-dom"
 
+import { columnColors } from "../utils/ColumnsUtils";
+
+//Komponenter:
+import Modal from "./Modal";
+
+//Kontext:
 import { columnsContext, tasksContext } from "../App";
+
+//ikon:
+import { FiLink } from "react-icons/fi";
+
 
 export default function ColumnsSettingsModal() {
 
 
-    const { columns, setColumns, setShowColumnSettingsModal, columnToEdit, setColumnToEdit } = useContext(columnsContext);
+    const {
+        columns, setColumns,
+        setShowColumnSettingsModal,
+        columnToEdit, setColumnToEdit } = useContext(columnsContext);
     // console.log(columns)
-    console.log("columnToEdit:", columnToEdit)
+    // console.log("columnToEdit:", columnToEdit)
 
     const { tasks, setTasks } = useContext(tasksContext);
-    console.log(tasks)
-
-
-
+    // console.log(tasks)
 
     const [name, setName] = useState(columnToEdit.columnName || "");
     const [color, setColor] = useState(columnToEdit.columnColor || "grey");
@@ -95,9 +100,6 @@ export default function ColumnsSettingsModal() {
             }
 
 
-
-
-
             //nollställer state som visar modal
             setShowColumnSettingsModal(false)
             //nollställer state som eventuellt håller en kolumn att redigera.
@@ -143,11 +145,7 @@ Detta går inte att ångra!
 
     }
 
-
-
-
-
-
+    // innehåll för modalen:
     const content = <>
 
         <div className="columnSettingsModal">
@@ -217,7 +215,6 @@ Detta går inte att ångra!
                 </>}
 
 
-
             </div>
 
 
@@ -241,23 +238,9 @@ Detta går inte att ångra!
             </div>
 
 
-
-
-
-
-
-
-
-
         </div>
 
-
     </>
-
-
-
-
-
 
 
     return (

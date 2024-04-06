@@ -1,14 +1,15 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
+
+//komponenter:
 import ColumnsSettingsModal from "./ColumnsSettingsModal"
+
+//kontext
 import { columnsContext } from "../App";
 
 
 export default function Header() {
 
-
-
     const { showColumnSettingsModal, setShowColumnSettingsModal } = useContext(columnsContext);
-
 
     // NOLLSTÄLL BOARD:
     function handleResetBoard() {
@@ -24,15 +25,13 @@ Skriv "${password}" för att bekräfta.`);
 
         if (confirmation === password) {
 
-            const confirm2 = confirm("Nollställer board."
-            )
+            const confirm2 = confirm("Nollställer board.")
 
             if (confirm2) {
-                console.log("vi nollställer")
+                // console.log("vi nollställer")
                 localStorage.clear();
                 window.location.reload();
             }
-
         } else {
             alert("Boarden nollställs inte.")
         }
@@ -45,23 +44,11 @@ Skriv "${password}" för att bekräfta.`);
                 <p className="reset" onClick={handleResetBoard}>Nollställ Boarden</p>
             </div>
 
-
-
-
-
-
-
-
-
-
             <div style={{ marginLeft: "auto" }}>
                 <button onClick={() => { setShowColumnSettingsModal(true) }} > Ny Kolumn</button >
             </div>
 
-
-
             {showColumnSettingsModal && <ColumnsSettingsModal />}
-
 
         </header >
     )

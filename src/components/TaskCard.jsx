@@ -1,13 +1,12 @@
-
 import { useContext, useState } from "react";
-import { tasksContext } from "../App";
-import { columnsContext } from "../App";
 
+//kontext
+import { tasksContext, columnsContext } from "../App";
+
+//komponenter:
 import AdvancedEditModal from "./AdvancedEditModal";
 
-
 export default function TaskCard({ task, markedAsDone, columnColor }) {
-
 
     const { columns, setColumns } = useContext(columnsContext)
     const { tasks, setTasks } = useContext(tasksContext);
@@ -19,15 +18,15 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
     function handleCardClick(e) {
         if (e.target.nodeName !== "SELECT") {
             setadvancedEditisOpend(true);
-            console.log("klick på kort")
+            // console.log("klick på kort")
         }
         // console.log(e)
     }
 
     function handleChangeCardColumn(e) {
         //byta det aktuella kortets ParentColumnID
-        console.log(task)
-        console.log(e.target.value)
+        // console.log(task)
+        // console.log(e.target.value)
 
         //vi returnerar alla objekt som dom är förutom om id matchar med det aktuella kortet....
         //---då sprder vi ut allt och uppdaterar parentColllumnId till det valda.
@@ -47,7 +46,6 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
                 className={markedAsDone ? "task_card marked-as-done_Card" : "task_card"}>
 
                 <div className="colored-line_task-Card" style={{ backgroundColor: columnColor }}>
-
                 </div>
 
                 <h3>{task.title}</h3>
@@ -72,11 +70,6 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
                     </select>
                 </div>
 
-
-
-
-
-
             </div>
             {advancedEditisOpend && <AdvancedEditModal taskID={task.id} setadvancedEditisOpend={setadvancedEditisOpend} />}
 
@@ -84,8 +77,4 @@ export default function TaskCard({ task, markedAsDone, columnColor }) {
 
     );
 
-}
-
-TaskCard.defaultProps = {
-    title: "Uppgift",
 }

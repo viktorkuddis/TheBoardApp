@@ -1,13 +1,15 @@
 import { useState, useContext, useEffect } from "react"
 
-import { tasksContext } from "../App";
-import { saveTasks } from "../utils/ApiUtils";
-
+//komponenter:
 import Alert from "./Alert";
+
+//kontext:
+import { tasksContext } from "../App";
+
 
 export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
-    const { tasks, setTasks } = useContext(tasksContext);
+    const { setTasks } = useContext(tasksContext);
     // console.log(tasks);
 
     //Placeholdertext:
@@ -37,7 +39,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         //omvärdet är en tom string så visas placeholder annars döljs den:.
         (e.target.textContent === "" ? setShowTitlePlaceholder(true) : setShowTitlePlaceholder(false))
 
-        console.log("taskTitle:", taskTitle);
+        // console.log("taskTitle:", taskTitle);
 
 
     };
@@ -72,9 +74,10 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
     function addNewTask() {
         console.log("AddNewTask är klickad")
         const taskTitleInput_Value = document.querySelector(".task-title_input").textContent
-        console.log("VÄRDET SOMFANNS: ", taskTitleInput_Value);
+        // console.log("VÄRDET SOMFANNS: ", taskTitleInput_Value);
         // console.log(taskTitleInput.textContent)
 
+        // trimmar ner blankslag och sparar sedan den nya upgiften:
         if (taskTitleInput_Value.trim() !== "") {
 
             let id = new Date;
@@ -93,6 +96,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
             }]));
             exitAddTaskCard();
 
+            // om det inte finns nåon titel så visas alert som ber om det!
         } else {
             setShowTitleMissingAlert(true);
             setTimeout(() => {
@@ -102,7 +106,7 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
         }
     }
 
-    //Lyssnar efter EEnter-klick och försöker spara om shift inte hålls ner!
+    //Lyssnar efter Enter-klick och försöker spara om shift inte hålls ner!
     function handleEnterKey(e) {
         if (e.key === "Enter" && !e.shiftKey) {
             addNewTask()
@@ -168,13 +172,6 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
             {/* //Villkorsstyrd rendering för Alert om namn saknas vid försök att lägga till uppgift:*/}
             {showTitleMissingAlert && <Alert alertContent="⚠️ Ge uppgiften en titel!" />}
-
-
-
-
-
-
-
 
 
         </div >

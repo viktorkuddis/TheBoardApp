@@ -1,15 +1,15 @@
 
 
 import { useContext } from "react"
-import BoardColumn from "./BoardColumn"
-import AddTaskCard from "./AddTaskCard"
+import BoardColumn from "../../components/BoardColumn"
+import AddTaskCard from "../../components/AddTaskCard"
 
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 import { useParams, Link } from 'react-router-dom'
 
-import { columnsContext } from "../App"
+import { columnsContext } from "../../App"
 
 
 export default function SingleColumnView() {
