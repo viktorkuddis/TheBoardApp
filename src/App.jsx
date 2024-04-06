@@ -9,6 +9,13 @@ import { useEffect, useState, createContext } from 'react'
 import Header from './modules/Header'
 import ColumnsContainer from './modules/ColumnsContainer'
 
+import Layout from './modules/Layout'
+
+//Sidor:
+import StartPage from './modules/StartPage'
+import SingleColumnView from './modules/SingleColumnView'
+import OuupsPage from './modules/OuupsPage'
+
 
 import { getTasks, saveTasks } from './utils/ApiUtils'
 import { getColumns, saveColumns } from './utils/ApiUtils'
@@ -18,6 +25,12 @@ export const columnsContext = createContext();
 
 //KONTEXT FÖR TASKS
 export const tasksContext = createContext();
+
+
+
+
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 function App() {
@@ -49,6 +62,11 @@ function App() {
 
 
   return (
+
+
+
+
+
     <div className='app_container'>
 
       <columnsContext.Provider
@@ -59,17 +77,36 @@ function App() {
 
         <tasksContext.Provider value={{ tasks, setTasks }}>
 
-          <Header />
+
+          <Router>
+            <Routes>
+              <Route path='/' element={<Layout />}>
+                <Route index element={<StartPage />} />
+                <Route path="*" element={<OuupsPage />} />
+
+
+              </Route>
+              <Route path="column/:id" element={<SingleColumnView />} />
 
 
 
-          <ColumnsContainer />
 
+
+              {/* <ColumnsContainer /> */}
+
+              {/* <Header /> */}
+
+
+            </Routes>
+          </Router>
 
         </tasksContext.Provider>
       </columnsContext.Provider>
 
+
+
     </div>
+
   )
 }
 

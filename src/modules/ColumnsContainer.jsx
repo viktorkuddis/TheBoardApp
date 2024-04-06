@@ -19,27 +19,25 @@ export default function ColumnsContainer() {
 
 
     return (
-        <>
+        <main className='columns-container_main'>
 
-
-
-            <main className='columns-container_main'>
-
-                {/* Loopa genom kolumnerna för att skapa dom som separata komponenter:
+            {/* Loopa genom kolumnerna för att skapa dom som separata komponenter:
                 Drillar ner props för att korten ska veta vilken kolumn de ska lägga sig i.*/}
 
-                {columns.map((column) => (
+            {
+                columns.map((column) => (
+
                     <BoardColumn
                         key={column.columnID}
                         column={column}
                     />
-                ))}
-
-            </main >
 
 
+                ))
+            }
 
-        </>
+        </ main >
+
     );
 
 

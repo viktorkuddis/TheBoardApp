@@ -3,6 +3,8 @@ import Modal from "./Modal";
 import { columnColors } from "../utils/ColumnsUtils";
 import { useContext, useState } from "react";
 
+import { Link } from "react-router-dom"
+
 import { columnsContext, tasksContext } from "../App";
 
 export default function ColumnsSettingsModal() {
@@ -204,6 +206,15 @@ Detta går inte att ångra!
 
                     </div>
                 </div>
+
+
+                {/* // OM Kolumnen är redan existerande så erbjuds direktlänk till den : */}
+                {columnToEdit && <>
+                    <br />
+                    <Link to={`/column/${columnToEdit.columnID}`}>Direktlänk till denna kolumn.</Link>
+                </>}
+
+
 
             </div>
 
