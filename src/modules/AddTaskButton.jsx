@@ -1,6 +1,9 @@
 import { useState } from "react";
 import AddTaskCard from "./AddTaskCard";
 
+import { BiMessageSquareAdd } from "react-icons/bi";
+
+
 
 export default function AddTaskButton(props) {
 
@@ -18,7 +21,9 @@ export default function AddTaskButton(props) {
     return (
         <>
             <button className="addTask_button" onClick={props.toggleAddCardComponent}>
-                <div>🦉</div>
+                <div style={{ fontSize: "1.3rem" }}>
+                    <BiMessageSquareAdd />
+                </div>
                 <p>Lägg till {props.markChildsAsDone && "klar"} uppgift</p>
             </button>
 

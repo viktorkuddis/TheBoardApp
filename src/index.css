@@ -112,6 +112,8 @@ button:hover {
   background-color: transparent;
   width: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: hsl(0, 0%, 30%);
   gap: 1rem;
 }
@@ -120,7 +122,7 @@ button:hover {
   background-color: hsla(0, 0%, 80%, 0.5);
 
   color: hsl(0, 0%, 0%);
-
+  border-color: white
 }
 
 /* --------------------------- */
