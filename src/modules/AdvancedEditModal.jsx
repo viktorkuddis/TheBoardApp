@@ -179,7 +179,7 @@ Detta går inte att ångra!`)
                     backgroundColor: currentColumn.columnColor,
                     color: "White"
                 }} > {currentColumn.columnName} </h2>
-                <button className="cross" title="Stäng och spara" onClick={handleExitAndSaveModal}>X</button>
+
             </div>
 
             <div className="body">

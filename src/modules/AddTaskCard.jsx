@@ -159,7 +159,6 @@ export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
             <div style={{ textAlign: "right", marginTop: "1rem" }}>
 
                 <button onClick={exitAddTaskCard} className="secondary-btn" style={{ marginLeft: "0.5rem" }}>Avbryt</button>
-                <button style={{ marginLeft: "0.5rem" }} >✏️</button>
                 <button onClick={addNewTask} className="primary-btn" style={{ marginLeft: "0.5rem" }}><b>Lägg till</b></button>
                 <p style={{
                     color: "grey",

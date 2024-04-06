@@ -4,6 +4,9 @@ import { useContext } from "react"
 import BoardColumn from "./BoardColumn"
 import AddTaskCard from "./AddTaskCard"
 
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+
 import { useParams, Link } from 'react-router-dom'
 
 import { columnsContext } from "../App"
@@ -27,7 +30,7 @@ export default function SingleColumnView() {
 
             <div style={{ margin: "0 auto" }}>
                 <br />
-                <Link to="/"> Tillbaka till boarden</Link>
+                <Link to="/"> <IoMdArrowRoundBack /> Tillbaka till boarden</Link>
             </div >
 
             <main className='columns-container_main'>
