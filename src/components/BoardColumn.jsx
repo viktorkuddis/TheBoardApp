@@ -1,23 +1,18 @@
-//funktionalitet:
-import { PropTypes } from "prop-types"
 import { useState, useContext } from "react";
 
-//moduler:
+//Komponenter:
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
 
+//Kontext:
 import { columnsContext, tasksContext } from "../App";
-
-
-
 
 
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
     const { setShowColumnSettingsModal, setColumnToEdit } = useContext(columnsContext)
-
 
     //UPPGIFTER:
     const { tasks, setTasks } = useContext(tasksContext);
@@ -52,7 +47,6 @@ export default function BoardColumn({ column }) {
                     column.columnID == task.parentColumnId
                     &&
                     (
-
                         <TaskCard
                             key={task.id}
                             task={task}
@@ -60,7 +54,6 @@ export default function BoardColumn({ column }) {
                             markedAsDone={column.markChildsAsDone}
                             columnColor={column.columnColor}
                         />
-
                     )
                     // om aktuella kolumnens props.markChildsAsDone = true så kommer korten i den kolumnen att stylas på ett annat vis.
                 )
@@ -85,7 +78,7 @@ export default function BoardColumn({ column }) {
 
             {/* ---------------------------------- */}
             {/* ---------------------------------- */}
-            {/* detta är lite testinformation som renderas på sidan: */}
+            {/* detta är lite testinformation som kan renderas på sidan: */}
             {/* <p>columnID: {column.columnID}</p>
             <p>Färg: {column.columnColor}</p>
             <p>{(column.markChildsAsDone && "Markeras som klar")}</p> */}
@@ -94,14 +87,8 @@ export default function BoardColumn({ column }) {
             {/* ---------------------------------- */}
 
         </div >
-
     </>
 
 
     );
-}
-
-BoardColumn.defaultProps = {
-    columnName: "Kolumnens Titel",
-
 }

@@ -15,20 +15,15 @@
     <Modal modalContent={variabelFörmodalContent} />
 */
 
-
-
 export default function Modal(props) {
 
   return (
-    <>
-      <div className="modal-background-plate">
-        <div className="modal-content-container">
-          {props.modalContent}
-        </div>
 
+    <div className="modal-background-plate">
+      <div className="modal-content-container">
+        {props.modalContent}
       </div>
-
-    </>
+    </div>
 
   )
 };
@@ -36,15 +31,3 @@ export default function Modal(props) {
 Modal.defaultProps = {
   modalContent: "Det finns ingenting att visa i denna modalen just nu."
 }
-
-/*
-
-relative låter oss flytta elementet relativt till sig själv
-
-absolut tar ut elementet ur flödet
-Sätter vi position kommer de va till oppen av dokumentet.
-den söker efternärmsta p
-
-
-
-*/

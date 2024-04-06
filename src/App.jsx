@@ -1,24 +1,28 @@
-import './App.css'
+// Style:
 import './AddTaskCard.css'
 import './Animations.css'
 import './ColumnsSettingsModal.css'
 
 import { useEffect, useState, createContext } from 'react'
 
-//komponenter:
-import Header from './modules/Header'
-import ColumnsContainer from './modules/ColumnsContainer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+//Sidor:
+import StartPage from './Pages/StartPage'
+import SingleColumnView from './Pages/SingleColumnView'
+import OuupsPage from './Pages/OuupsPage'
 
-import { getTasks, saveTasks } from './utils/ApiUtils'
-import { getColumns, saveColumns } from './utils/ApiUtils'
+//layoutfil:
+import Layout from './Pages/Layout'
+
 
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
-
 //KONTEXT FÖR TASKS
 export const tasksContext = createContext();
 
+import { getTasks, saveTasks } from './utils/ApiUtils'
+import { getColumns, saveColumns } from './utils/ApiUtils'
 
 function App() {
 
@@ -49,6 +53,7 @@ function App() {
 
 
   return (
+
     <div className='app_container'>
 
       <columnsContext.Provider
@@ -59,17 +64,26 @@ function App() {
 
         <tasksContext.Provider value={{ tasks, setTasks }}>
 
-          <Header />
 
+          <Router>
+            <Routes>
 
+              <Route path='/' element={<Layout />}>
+                <Route index element={<StartPage />} />
+                <Route path="*" element={<OuupsPage />} />
+                <Route path="column/:id" element={<SingleColumnView />} />
+              </Route>
 
-          <ColumnsContainer />
-
+            </Routes>
+          </Router>
 
         </tasksContext.Provider>
       </columnsContext.Provider>
 
-    </div>
+
+
+    </div >
+
   )
 }
 
