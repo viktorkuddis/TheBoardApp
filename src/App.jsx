@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //Sidor:
 import StartPage from './Pages/StartPage'
 import SingleColumnView from './Pages/SingleColumnView'
+import SingleTaskView from './Pages/SingleTaskView copy';
 import OuupsPage from './Pages/OuupsPage'
 
 //layoutfil:
@@ -64,16 +65,14 @@ function App() {
 
         <tasksContext.Provider value={{ tasks, setTasks }}>
 
-
           <Router>
             <Routes>
-
               <Route path='/' element={<Layout />}>
                 <Route index element={<StartPage />} />
                 <Route path="*" element={<OuupsPage />} />
-                <Route path="column/:id" element={<SingleColumnView />} />
               </Route>
-
+              <Route path="column/:id" element={<SingleColumnView />} />
+              <Route path="task/:id" element={<SingleTaskView />} />
             </Routes>
           </Router>
 

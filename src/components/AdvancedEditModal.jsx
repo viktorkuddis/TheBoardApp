@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 
+import { Link } from "react-router-dom"
+
 //Kontext
 import { tasksContext, columnsContext } from "../App";
+
+//ikon:
+import { FiLink } from "react-icons/fi";
 
 // komponenter:
 import Modal from "./Modal";
@@ -230,8 +235,12 @@ Detta går inte att ångra!`)
 
 
                 <div className="time-stams_container" style={{ marginBottom: "0.5rem" }} >
+                    <Link to={`/task/${currentTask.id}`}
+                        style={{ fontSize: "0.8rem" }}> <FiLink /> Direktlänk till denna uppgift.</Link>
                     <p className="timestamps">Skapad: {currentTask.timeStampCreated}</p>
                     <p className="timestamps">Redigerad: {timeStampLastEdited}</p>
+
+
                 </div>
 
 
