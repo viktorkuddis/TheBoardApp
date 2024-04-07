@@ -23,6 +23,7 @@ export const tasksContext = createContext();
 
 import { getTasks, saveTasks } from './utils/ApiUtils'
 import { getColumns, saveColumns } from './utils/ApiUtils'
+import Header from './components/Header';
 
 function App() {
 
@@ -64,16 +65,13 @@ function App() {
 
         <tasksContext.Provider value={{ tasks, setTasks }}>
 
-
           <Router>
             <Routes>
-
               <Route path='/' element={<Layout />}>
                 <Route index element={<StartPage />} />
                 <Route path="*" element={<OuupsPage />} />
-                <Route path="column/:id" element={<SingleColumnView />} />
               </Route>
-
+              <Route path="column/:id" element={<SingleColumnView />} />
             </Routes>
           </Router>
 
