@@ -30,6 +30,7 @@ export default function SingleColumnView() {
             {columnToShow ? (
                 <>
                     <div style={{ margin: "0 auto" }}>
+                        <br />
                         <Link to="/"> <IoMdArrowRoundBack /> Tillbaka till boarden</Link>
                     </div >
                     <main className='columns-container_main'>
