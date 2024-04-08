@@ -4,7 +4,9 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { useParams, Link } from 'react-router-dom'
 
-import { tasksContext, columnsContext } from "../App"
+import { columnsContext } from "../App"
+//Kontext
+import TasksContext from "../context/TasksContext";
 
 import Modal from "../components/Modal";
 
@@ -13,7 +15,7 @@ import OuupsPage from "./OuupsPage";
 
 export default function SingleTaskView() {
 
-    const { tasks } = useContext(tasksContext);
+    const { tasks } = useContext(TasksContext);
     const { columns } = useContext(columnsContext);
 
     // häntar id från sökvägen

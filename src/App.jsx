@@ -17,12 +17,15 @@ import OuupsPage from './Pages/OuupsPage'
 import Layout from './Pages/Layout'
 
 
+import { TasksContextProvider } from './context/TasksContext';
+
+
 //KONTEXT FÖR KOLUMNER
 export const columnsContext = createContext();
-//KONTEXT FÖR TASKS
-export const tasksContext = createContext();
+// !KONTEXT FÖR TASKS
+// ! export const tasksContext = createContext();
 
-import { getTasks, saveTasks } from './utils/ApiUtils'
+// !import { getTasks, saveTasks } from './utils/ApiUtils'
 import { getColumns, saveColumns } from './utils/ApiUtils'
 
 function App() {
@@ -32,8 +35,8 @@ function App() {
   const [columns, setColumns] = useState(getColumns());
   // console.log(columns)
 
-  // Värde för tasks
-  const [tasks, setTasks] = useState(getTasks());
+  // !Värde för tasks
+  // !const [tasks, setTasks] = useState(getTasks());
   // console.log(tasks);
 
   // Spara columns när variabeln columns uppdateras:
@@ -41,10 +44,10 @@ function App() {
     saveColumns(columns);
   }, [columns])
 
-  // Spara tasks när variabeln tasks uppdateras:
-  useEffect(() => {
-    saveTasks(tasks);
-  }, [tasks])
+  // !Spara tasks när variabeln tasks uppdateras:
+  // !useEffect(() => {
+  // !  saveTasks(tasks);
+  // !}, [tasks])
 
   //hanterar state för modalen som redigerar kolumner
   const [showColumnSettingsModal, setShowColumnSettingsModal] = useState(false)
@@ -63,7 +66,9 @@ function App() {
           showColumnSettingsModal, setShowColumnSettingsModal, columnToEdit, setColumnToEdit
         }}>
 
-        <tasksContext.Provider value={{ tasks, setTasks }}>
+        {/* //! <tasksContext.Provider value={{ tasks, setTasks }}> */}
+
+        <TasksContextProvider>
 
           <Router>
             <Routes>
@@ -76,7 +81,9 @@ function App() {
             </Routes>
           </Router>
 
-        </tasksContext.Provider>
+        </TasksContextProvider>
+
+        {/* //! </tasksContext.Provider> */}
       </columnsContext.Provider>
 
 
