@@ -8,7 +8,7 @@ import { columnColors } from "../utils/ColumnsUtils";
 import Modal from "./Modal";
 
 //Kontext:
-import { columnsContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
 import TasksContext from "../context/TasksContext";
 
 //ikon:
@@ -21,7 +21,7 @@ export default function ColumnsSettingsModal() {
     const {
         columns, setColumns,
         setShowColumnSettingsModal,
-        columnToEdit, setColumnToEdit } = useContext(columnsContext);
+        columnToEdit, setColumnToEdit } = useContext(ColumnsContext);
     // console.log(columns)
     // console.log("columnToEdit:", columnToEdit)
 

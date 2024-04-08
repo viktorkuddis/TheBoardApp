@@ -6,14 +6,14 @@ import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
 
 //Kontext:
-import { columnsContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
 import TasksContext from "../context/TasksContext";
 
 
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
-    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(columnsContext)
+    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(ColumnsContext)
 
     //UPPGIFTER:
     const { tasks, setTasks } = useContext(TasksContext);

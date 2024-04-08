@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
 //Kontext
-import { columnsContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
 import TasksContex from "../context/TasksContext";
 
 //ikon:
@@ -25,7 +25,7 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     // console.log(tasks)
 
     //data om de kollumner som finns:
-    const { columns, setColumns } = useContext(columnsContext)
+    const { columns, setColumns } = useContext(ColumnsContext)
     // console.log(columns)
 
     //Aktuell uppgift:

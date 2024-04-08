@@ -2,14 +2,16 @@ import { useContext } from "react";
 
 //Komponenter:
 import BoardColumn from "./BoardColumn";
-import { columnsContext } from "../App";
+
+//Kontext:
+import ColumnsContext from "../context/ColumnsContext";
 
 
 //Detta är containern som i sin tur håller kolumnerna:
 export default function ColumnsContainer() {
 
     // hämtar kontext för kolumner
-    const { columns, setColumns } = useContext(columnsContext);
+    const { columns, setColumns } = useContext(ColumnsContext);
 
 
     return (

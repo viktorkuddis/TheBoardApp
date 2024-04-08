@@ -1,19 +1,25 @@
 import { useContext } from "react"
-import BoardColumn from "../components/BoardColumn"
-
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { useParams, Link } from 'react-router-dom'
 
-import { columnsContext } from "../App"
 
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+// Komponenter
+import BoardColumn from "../components/BoardColumn"
 import OuupsPage from "./OuupsPage";
+
+
+//Kontext
+import ColumnsContext from "../context/ColumnsContext";
+import { useEffect } from "react";
+
 
 
 export default function SingleColumnView() {
 
-    const { columns, setColumns } = useContext(columnsContext);
-    const { setShowColumnSettingsModal } = useContext(columnsContext);
+    const { columns, setColumns } = useContext(ColumnsContext);
+    const { showColumnSettingsModal, setShowColumnSettingsModal } = useContext(ColumnsContext);
 
     // häntar id från sökvägen
     const { id } = useParams();
@@ -22,7 +28,11 @@ export default function SingleColumnView() {
     const columnToShow = columns.find((column) => column.columnID == id);
 
     // Sätter boleanen som öppnar inställningarna för kolumnen till false, ifall man kommer direkt därifrån och sedan klickar sig tillbaka kommer den fortfarande vara öppen om inte detta görs.
-    setShowColumnSettingsModal(false);
+    useEffect(() => {
+        // Sätt setShowColumnSettingsModal till false när komponenten monteras
+        setShowColumnSettingsModal(false);
+    }, []);
+
 
     return (
         <>
