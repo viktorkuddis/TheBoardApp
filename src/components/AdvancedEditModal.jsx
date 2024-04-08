@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 //Kontext
 import ColumnsContext from "../context/ColumnsContext";
@@ -15,7 +15,7 @@ import Alert from "./Alert";
 
 
 
-export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
+export default function AdvancedEditModal({ taskID, advancedEditisOpend, setadvancedEditisOpend }) {
 
     //taskIT är det aktuella taskets ID:
     // console.log(taskID)
@@ -47,6 +47,11 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
     const [currentColumn, setCurrentColumn] = useState({});
     // console.log("kolumnen för tasken:currentColumn: ", currentColumn)
     // console.log("namnet på kolumnen:", currentColumn.columnName)
+
+
+
+    //Vi behöver kunna navigera användaren till startsidan i vissa situationer....
+    const navigate = useNavigate();
 
 
     // Uppdaterar CURRENT COLUMN OBJEKTET varje gång parentColumnID uppdateras(flyttas via knapp)(för att kynna färja och namnge labels i realtid):
@@ -111,7 +116,8 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
             console.log("exit")
             console.log(taskID);
             uppdateTask()
-            setadvancedEditisOpend(false);
+            // Om vi har tilgång till variabeln advancedEditisOpend så sätter vi den till faskt. (Den finns inte tillgänglig i single view och kommer generera error annars.).
+            advancedEditisOpend && setadvancedEditisOpend(false);
         } else {
             setShowAlert(true)
             setTimeout(() => {
@@ -120,11 +126,13 @@ export default function AdvancedEditModal({ taskID, setadvancedEditisOpend }) {
         }
 
 
-
     }
 
     //Tar bort uppgiften ut Tasks:
     // Skickar ett confirmationsmeddelande. raderar om ja.
+
+
+
     function handleDeleteTask() {
 
         const confirmation = confirm(`⚠️ RADERA UPPGIFT ⚠️
@@ -141,6 +149,13 @@ Detta går inte att ångra!`)
             // console.log(newArray)
 
             setTasks(newArray);
+
+            //om variabeln advancedEditisOpend inte är tillgänglig 
+            //så snavigerar vi användaren till startsidan.
+            //variabeln är tillgänglig där kolumnen är tillgänglig. 
+            //dvs både i startsidan och i single-column-view. Men inte i single task view.
+            //retuslterar i att singleTask-view skickar till startsidan. Annars är man kvar där man är. 
+            !advancedEditisOpend && navigate("/");
         }
     }
 
@@ -256,9 +271,19 @@ Detta går inte att ångra!`)
 
                 <div>
                     <button className="secondary-btn"
-                        onClick={() => { setadvancedEditisOpend(false) }}>Avbryt</button>
+                        onClick={() => {
+                            //om variabeln är tillgänglig so ställer vi om den. annrs är användaren i single Task view och då navigerar vi till första sidan.
+                            advancedEditisOpend
+                                ? setadvancedEditisOpend(false)
+                                : navigate("/");
+                        }}>Avbryt</button>
                     <button className="primary-btn"
-                        onClick={handleExitAndSaveModal}
+                        onClick={() => {
+                            handleExitAndSaveModal()
+                            // handle exit modal hörs alltiid på klick
+                            // om variabeln int är tillgänglig (innebär att vi är i singleTask-view.) så navigeras vi till förstasidan:
+                            !advancedEditisOpend && navigate("/")
+                        }}
                         style={{ marginLeft: "1rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
                         <b>OK</b>
                     </button>

@@ -200,7 +200,8 @@ header {
 
 
 
-.board-column h2 {
+.board-column h2,
+.advancedEditModal h2 {
   background-color: grey;
   font-size: 1.2rem;
   flex-shrink: 0;
