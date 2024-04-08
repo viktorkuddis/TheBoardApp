@@ -16,6 +16,7 @@ import { useEffect } from "react";
 
 
 
+
 export default function SingleColumnView() {
 
     const { columns, setColumns } = useContext(ColumnsContext);
