@@ -4,12 +4,12 @@ import { useContext } from "react";
 import ColumnsSettingsModal from "./ColumnsSettingsModal"
 
 //kontext
-import { columnsContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
 
 
 export default function Header() {
 
-    const { showColumnSettingsModal, setShowColumnSettingsModal } = useContext(columnsContext);
+    const { showColumnSettingsModal, setShowColumnSettingsModal } = useContext(ColumnsContext);
 
     // NOLLSTÄLL BOARD:
     function handleResetBoard() {

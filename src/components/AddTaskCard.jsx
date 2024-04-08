@@ -3,13 +3,13 @@ import { useState, useContext, useEffect } from "react"
 //komponenter:
 import Alert from "./Alert";
 
-//kontext:
-import { tasksContext } from "../App";
+//Kontext
+import TasksContext from "../context/TasksContext";
 
 
 export default function AddTaskCard({ setShowAddTaskCard, columnID }) {
 
-    const { setTasks } = useContext(tasksContext);
+    const { setTasks } = useContext(TasksContext);
     // console.log(tasks);
 
     //Placeholdertext:

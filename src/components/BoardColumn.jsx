@@ -6,16 +6,17 @@ import AddTaskButton from "./AddTaskButton";
 import AddTaskCard from "./AddTaskCard";
 
 //Kontext:
-import { columnsContext, tasksContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
+import TasksContext from "../context/TasksContext";
 
 
 //Kolumnkomponent:
 export default function BoardColumn({ column }) {
 
-    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(columnsContext)
+    const { setShowColumnSettingsModal, setColumnToEdit } = useContext(ColumnsContext)
 
     //UPPGIFTER:
-    const { tasks, setTasks } = useContext(tasksContext);
+    const { tasks, setTasks } = useContext(TasksContext);
 
     // TGGLA MELLAN KNAPP FÖR ATT LÄGGA TILL TASK VS INPUTELEMENT:
     //Variabel som avgör om kortet kort med inputelement visas eller ej:

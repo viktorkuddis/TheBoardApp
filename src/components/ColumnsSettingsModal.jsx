@@ -8,7 +8,8 @@ import { columnColors } from "../utils/ColumnsUtils";
 import Modal from "./Modal";
 
 //Kontext:
-import { columnsContext, tasksContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
+import TasksContext from "../context/TasksContext";
 
 //ikon:
 import { FiLink } from "react-icons/fi";
@@ -20,11 +21,11 @@ export default function ColumnsSettingsModal() {
     const {
         columns, setColumns,
         setShowColumnSettingsModal,
-        columnToEdit, setColumnToEdit } = useContext(columnsContext);
+        columnToEdit, setColumnToEdit } = useContext(ColumnsContext);
     // console.log(columns)
     // console.log("columnToEdit:", columnToEdit)
 
-    const { tasks, setTasks } = useContext(tasksContext);
+    const { tasks, setTasks } = useContext(TasksContext);
     // console.log(tasks)
 
     const [name, setName] = useState(columnToEdit.columnName || "");

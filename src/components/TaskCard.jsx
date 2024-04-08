@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
 
 //kontext
-import { tasksContext, columnsContext } from "../App";
+import ColumnsContext from "../context/ColumnsContext";
+import TasksContext from "../context/TasksContext";
 
 //komponenter:
 import AdvancedEditModal from "./AdvancedEditModal";
 
 export default function TaskCard({ task, markedAsDone, columnColor }) {
 
-    const { columns, setColumns } = useContext(columnsContext)
-    const { tasks, setTasks } = useContext(tasksContext);
+    const { columns, setColumns } = useContext(ColumnsContext)
+    const { tasks, setTasks } = useContext(TasksContext);
 
     //Variabel som togglar om modalen för avancerad edit ska vara öppen eller ej
     const [advancedEditisOpend, setadvancedEditisOpend] = useState(false);
